@@ -9,8 +9,8 @@
 
 WINEPREFIX="$HOME/.deepinwine/Deepin-TIM"
 APPDIR="/opt/deepinwine/apps/Deepin-TIM"
-APPVER="1.1.5"
-TIMVER="1.1.5"
+APPVER="1.0.4"
+TIMVER="1.2.0"
 APPTAR="files.7z"
 PACKAGENAME="com.qq.tim"
 
