@@ -1,0 +1,12 @@
+post_install() {
+    sed "s/\(Categories.*$\)/\1Network;/" -i /usr/share/applications/deepin.com.qq.office.desktop
+}
+
+post_upgrade() {
+    new_tim_version=$(echo $1 | sed "s/-.*//")
+    find /home -maxdepth 2 -name ".deepinwine" -exec sed -i "s/.*/$new_tim_version/" \{\}/Deepin-TIM/PACKAGE_VERSION \;
+}
+
+pre_remove() {
+    find /home -maxdepth 2 -name ".deepinwine" -exec rm -rf \{\} \;
+}

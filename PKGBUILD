@@ -11,6 +11,7 @@ url="http://tim.qq.com/"
 license=('custom')
 depends=('p7zip' 'wine' 'xorg-xwininfo' 'xdotool' 'wqy-microhei')
 conflicts=('wine-tim')
+install="deepin-tim-for-arch.install"
 _mirror="https://mirrors.ustc.edu.cn/deepin"
 source=("$_mirror/pool/non-free/d/deepin.com.qq.office/deepin.com.qq.office_${deepintimver}_i386.deb"
   "http://dldir1.qq.com/qqfile/qq/TIM${pkgver}/21175/TIM${pkgver}.exe"
