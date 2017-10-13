@@ -1,7 +1,3 @@
-post_install() {
-    sed "s/\(Categories.*$\)/\1Network;/" -i /usr/share/applications/deepin.com.qq.office.desktop
-}
-
 post_upgrade() {
     new_tim_version=$(echo $1 | sed "s/-.*//")
     echo "Updating the TIM package version..."
