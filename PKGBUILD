@@ -20,7 +20,7 @@ source=("$_mirror/pool/non-free/d/deepin.com.qq.office/deepin.com.qq.office_${de
   "update.policy")
 md5sums=('24de53e74f6917dad0693b57e1e6ba4b'
   'd20d4aeb29089c53b02c6cec44fa40fe'
-  '70063d5e301ffffef2fac6ca7b942fb1'
+  'ae68cc75979f6b3f536c24c2d70d3735'
   'ebde755e3bd213550f5ccc69d3192060'
   'a66646b473a3fbad243ac1afd64da07a')
 
