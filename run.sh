@@ -9,8 +9,8 @@
 
 WINEPREFIX="$HOME/.deepinwine/Deepin-TIM"
 APPDIR="/opt/deepinwine/apps/Deepin-TIM"
-APPVER="1.0.4"
-TIMVER="1.2.0"
+APPVER="2.0.0"
+TIMVER="2.0.0"
 APPTAR="files.7z"
 PACKAGENAME="com.qq.tim"
 
@@ -25,8 +25,8 @@ CallApp()
 {
 	if [ ! -f $WINEPREFIX/reinstalled ]
 	then
-		env WINEPREFIX=$WINEPREFIX wine $APPDIR/TIM$TIMVER.exe
 		touch $WINEPREFIX/reinstalled
+		env WINEPREFIX=$WINEPREFIX wine $APPDIR/TIM$TIMVER.exe
 	else
 		bash "$WINEPREFIX/drive_c/deepin/EnvInit.sh"
 	fi
