@@ -17,16 +17,12 @@ _mirror="https://mirrors.ustc.edu.cn/deepin"
 source=("$_mirror/pool/non-free/d/deepin.com.qq.office/deepin.com.qq.office_${deepintimver}_i386.deb"
   "http://dldir1.qq.com/qqfile/qq/TIM${pkgver}/22317/TIM${pkgver}.exe"
   "run.sh"
-  "system.reg"
-  "user.reg"
-  "userdef.reg"
+  "reg_files.tar.bz2"
   "update.policy")
 md5sums=('5cf622671fc50b8a76434d7f86134a9a'
   '53d2bd63163e849ab8bbc89b5440bfc6'
   '1f533f05f918a3e8bac7a71fb0a13cc6'
-  '8a38b29888a4ed68ac0b1a36f349e594'
-  '1d64d2e10f716f12ab6fa8200edea233'
-  'b0c17bbb093d794d6a3d8c3db01c482b'
+  'ebde755e3bd213550f5ccc69d3192060'
   'a66646b473a3fbad243ac1afd64da07a')
 
 build() {
