@@ -5,7 +5,7 @@
 pkgname=deepin-wine-tim
 pkgver=2.0.0
 deepintimver=1.2.0deepin0
-pkgrel=2.1
+pkgrel=2.2
 pkgdesc="Latest Tencent TIM (com.qq.office) on Deepin Wine For Archlinux"
 arch=("x86_64")
 url="http://tim.qq.com/"
@@ -47,7 +47,6 @@ build() {
 
 package() {
   msg "Preparing icons ..."
-  sed -i -- 's/chat;/Network;InstantMessaging;/g' "${srcdir}/dpkgdir/usr/local/share/applications/deepin.com.qq.office.desktop"
   sed -i '9s#.*#Exec="/opt/deepinwine/apps/Deepin-TIM/run.sh"#'  "${srcdir}/dpkgdir/usr/local/share/applications/deepin.com.qq.office.desktop"
   install -d "${pkgdir}/usr/share"
   cp -a ${srcdir}/dpkgdir/usr/local/share/* "${pkgdir}/usr/share/"
