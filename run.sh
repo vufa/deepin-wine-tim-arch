@@ -81,6 +81,15 @@ RunApp()
  	CallApp
 }
 
+CreateBottle()
+{
+    if [ -d "$WINEPREFIX" ]; then
+        UpdateApp
+    else
+        DeployApp
+    fi
+}
+
 if [ -z $1 ]; then
 	RunApp
 	exit 0
@@ -89,8 +98,14 @@ case $1 in
 	"-r" | "--reset")
 		ResetApp
 		;;
+    "-c" | "--create")
+		CreateBottle
+		;;
 	"-e" | "--remove")
 		RemoveApp
+		;;
+    "-u" | "--uri")
+		RunApp $2
 		;;
 	"-h" | "--help")
 		HelpApp

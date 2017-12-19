@@ -21,7 +21,7 @@ source=("$_mirror/pool/non-free/d/deepin.com.qq.office/deepin.com.qq.office_${de
   "update.policy")
 md5sums=('2547a4c81ce90c031222564911892f29'
   '53d2bd63163e849ab8bbc89b5440bfc6'
-  '1f533f05f918a3e8bac7a71fb0a13cc6'
+  'afa7a757871ff163b30cb06b0ad61956'
   'ebde755e3bd213550f5ccc69d3192060'
   'a66646b473a3fbad243ac1afd64da07a')
 
@@ -47,7 +47,6 @@ build() {
 
 package() {
   msg "Preparing icons ..."
-  sed -i '9s#.*#Exec="/opt/deepinwine/apps/Deepin-TIM/run.sh"#'  "${srcdir}/dpkgdir/usr/local/share/applications/deepin.com.qq.office.desktop"
   install -d "${pkgdir}/usr/share"
   cp -a ${srcdir}/dpkgdir/usr/local/share/* "${pkgdir}/usr/share/"
   msg "Copying TIM to /opt/deepinwine/apps/Deepin-TIM ..."
