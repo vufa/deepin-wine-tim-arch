@@ -98,13 +98,13 @@ case $1 in
 	"-r" | "--reset")
 		ResetApp
 		;;
-    "-c" | "--create")
+	"-c" | "--create")
 		CreateBottle
 		;;
 	"-e" | "--remove")
 		RemoveApp
 		;;
-    "-u" | "--uri")
+	"-u" | "--uri")
 		RunApp $2
 		;;
 	"-h" | "--help")

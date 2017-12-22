@@ -4,7 +4,7 @@
 
 pkgname=deepin-wine-tim
 pkgver=2.0.0
-deepintimver=2.0.0deepin0
+deepintimver=2.0.0deepin1
 pkgrel=2.3
 pkgdesc="Latest Tencent TIM (com.qq.office) on Deepin Wine For Archlinux"
 arch=("x86_64")
@@ -19,9 +19,9 @@ source=("$_mirror/pool/non-free/d/deepin.com.qq.office/deepin.com.qq.office_${de
   "run.sh"
   "reg_files.tar.bz2"
   "update.policy")
-md5sums=('2547a4c81ce90c031222564911892f29'
+md5sums=('3d2b0f0449a8ba9297974e5a06df959b'
   '53d2bd63163e849ab8bbc89b5440bfc6'
-  'afa7a757871ff163b30cb06b0ad61956'
+  '4870d70b7e5263ca11283223f65aadc5'
   'ebde755e3bd213550f5ccc69d3192060'
   'a66646b473a3fbad243ac1afd64da07a')
 
