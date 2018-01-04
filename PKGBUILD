@@ -5,7 +5,7 @@
 pkgname=deepin-wine-tim
 pkgver=2.1.0
 deepintimver=2.0.0deepin1
-pkgrel=2.3
+pkgrel=3
 pkgdesc="Latest Tencent TIM (com.qq.office) on Deepin Wine For Archlinux"
 arch=("x86_64")
 url="http://tim.qq.com/"
@@ -35,6 +35,7 @@ build() {
   msg "Removing original outdated TIM directory ..."
   rm -r "${srcdir}/deepintimdir/drive_c/Program Files/Tencent/TIM"
   msg "Adding config files and fonts"
+  tar -jxvf reg_files.tar.bz2 -C "${srcdir}/"
   cp userdef.reg "${srcdir}/deepintimdir/userdef.reg"
   cp system.reg "${srcdir}/deepintimdir/system.reg"
   cp update.policy "${srcdir}/deepintimdir/update.policy"
