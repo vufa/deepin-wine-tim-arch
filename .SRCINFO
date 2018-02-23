@@ -1,6 +1,6 @@
 pkgbase = deepin-wine-tim
 	pkgdesc = Latest Tencent TIM (com.qq.office) on Deepin Wine For Archlinux
-	pkgver = 2.1.0
+	pkgver = 2.1.5
 	pkgrel = 3
 	url = http://tim.qq.com/
 	install = deepin-wine-tim.install
@@ -22,13 +22,13 @@ pkgbase = deepin-wine-tim
 	conflicts = deepin.com.qq.office
 	conflicts = deepin-tim-for-arch
 	source = https://mirrors.ustc.edu.cn/deepin/pool/non-free/d/deepin.com.qq.office/deepin.com.qq.office_2.0.0deepin1_i386.deb
-	source = http://dldir1.qq.com/qqfile/qq/TIM2.1.0/22747/TIM2.1.0.exe
+	source = http://dldir1.qq.com/qqfile/qq/TIM2.1.5/23129/TIM2.1.5.exe
 	source = run.sh
 	source = reg_files.tar.bz2
 	source = update.policy
 	md5sums = 3d2b0f0449a8ba9297974e5a06df959b
-	md5sums = afd0b5f177386b24dd05eeb24e4e1d2b
-	md5sums = 44a8f1599b98bcd5838ae2f3113d7ac8
+	md5sums = 9701111d3ccfd4682eb5d80fce22cd9c
+	md5sums = 3afd511f76f9125051259adb3fb95b09
 	md5sums = ebde755e3bd213550f5ccc69d3192060
 	md5sums = a66646b473a3fbad243ac1afd64da07a
 
