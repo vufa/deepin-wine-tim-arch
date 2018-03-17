@@ -15,12 +15,12 @@ conflicts=('wine-tim' 'deepin.com.qq.office' 'deepin-tim-for-arch')
 install="deepin-wine-tim.install"
 _mirror="https://mirrors.ustc.edu.cn/deepin"
 source=("$_mirror/pool/non-free/d/deepin.com.qq.office/deepin.com.qq.office_${deepintimver}_i386.deb"
-  "http://dldir1.qq.com/qqfile/qq/TIM${pkgver}/23129/TIM${pkgver}.exe"
+  "http://dldir1.qq.com/qqfile/qq/TIM${pkgver}/23141/TIM${pkgver}.exe"
   "run.sh"
   "reg_files.tar.bz2"
   "update.policy")
 md5sums=('3d2b0f0449a8ba9297974e5a06df959b'
-  '9701111d3ccfd4682eb5d80fce22cd9c'
+  '9d228e78e544b6b5f103de233d169240'
   '3afd511f76f9125051259adb3fb95b09'
   'ebde755e3bd213550f5ccc69d3192060'
   'a66646b473a3fbad243ac1afd64da07a')
