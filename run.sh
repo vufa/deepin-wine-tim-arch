@@ -5,8 +5,6 @@
 #   Author:     Li LongYu <lilongyu@linuxdeepin.com>
 #               Peng Hao <penghao@linuxdeepin.com>
 
-#               wszqkzqk <wszqkzqk@gmail.com>
-
 WINEPREFIX="$HOME/.deepinwine/Deepin-TIM"
 APPDIR="/opt/deepinwine/apps/Deepin-TIM"
 APPVER="2.1.5"
@@ -37,7 +35,6 @@ ExtractApp()
 	7z x "$APPDIR/$APPTAR" -o"$1"
 	mv "$1/drive_c/users/@current_user@" "$1/drive_c/users/$USER"
 	sed -i "s#@current_user@#$USER#" $1/*.reg
-	sed -i "s/deepin-wine/wine/" $1/drive_c/deepin/EnvInit.sh
 }
 DeployApp()
 {

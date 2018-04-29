@@ -21,7 +21,7 @@ source=("$_mirror/pool/non-free/d/deepin.com.qq.office/deepin.com.qq.office_${de
   "update.policy")
 md5sums=('3d2b0f0449a8ba9297974e5a06df959b'
   '9d228e78e544b6b5f103de233d169240'
-  '3afd511f76f9125051259adb3fb95b09'
+  '11f0b230e0acf1f0c6e4bde590b6abb2'
   'ebde755e3bd213550f5ccc69d3192060'
   'a66646b473a3fbad243ac1afd64da07a')
 
@@ -35,6 +35,7 @@ build() {
   msg "Removing original outdated TIM directory ..."
   rm -r "${srcdir}/deepintimdir/drive_c/Program Files/Tencent/TIM"
   msg "Adding config files and fonts"
+  sed -i "s/deepin-wine/wine/" "${srcdir}/deepintimdir/drive_c/deepin/EnvInit.sh"
   tar -jxvf reg_files.tar.bz2 -C "${srcdir}/"
   cp userdef.reg "${srcdir}/deepintimdir/userdef.reg"
   cp system.reg "${srcdir}/deepintimdir/system.reg"
