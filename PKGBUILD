@@ -4,7 +4,7 @@
 
 pkgname=deepin-wine-tim
 pkgver=2.1.5
-deepintimver=2.0.0deepin1
+deepintimver=2.0.0deepin3
 pkgrel=3
 pkgdesc="Tencent TIM (com.qq.office) on Deepin Wine For Archlinux"
 arch=("x86_64")
@@ -13,15 +13,15 @@ license=('custom')
 depends=('p7zip' 'wine' 'wine-mono' 'wine_gecko' 'xorg-xwininfo' 'xdotool' 'wqy-microhei' 'adobe-source-han-sans-cn-fonts' 'lib32-alsa-lib' 'lib32-alsa-plugins' 'lib32-libpulse' 'lib32-openal')
 conflicts=('wine-tim' 'deepin.com.qq.office' 'deepin-tim-for-arch')
 install="deepin-wine-tim.install"
-_mirror="https://mirrors.ustc.edu.cn/deepin"
+_mirror="http://packages.deepin.com/deepin"
 source=("$_mirror/pool/non-free/d/deepin.com.qq.office/deepin.com.qq.office_${deepintimver}_i386.deb"
   "http://dldir1.qq.com/qqfile/qq/TIM${pkgver}/23141/TIM${pkgver}.exe"
   "run.sh"
   "reg_files.tar.bz2"
   "update.policy")
-md5sums=('3d2b0f0449a8ba9297974e5a06df959b'
+md5sums=('2acda3caeb774ac97fdb8754e8b1d549'
   '9d228e78e544b6b5f103de233d169240'
-  'ef83e85c848bd5e02df6c86e29241c7f'
+  'df5f48e88b91ec3bc944cfe2ec9ca342'
   'ebde755e3bd213550f5ccc69d3192060'
   'a66646b473a3fbad243ac1afd64da07a')
 
@@ -29,13 +29,12 @@ build() {
   msg "Extracting DPKG package ..."
   mkdir -p "${srcdir}/dpkgdir"
   tar -xvf data.tar.xz -C "${srcdir}/dpkgdir"
-  sed "s/\(Categories.*$\)/\1Network;/" -i "${srcdir}/dpkgdir/usr/local/share/applications/deepin.com.qq.office.desktop"
+  sed "s/\(Categories.*$\)/\1Network;/" -i "${srcdir}/dpkgdir/usr/share/applications/deepin.com.qq.office.desktop"
   msg "Extracting Deepin Wine TIM archive ..."
   7z x -aoa "${srcdir}/dpkgdir/opt/deepinwine/apps/Deepin-TIM/files.7z" -o"${srcdir}/deepintimdir"
   msg "Removing original outdated TIM directory ..."
   rm -r "${srcdir}/deepintimdir/drive_c/Program Files/Tencent/TIM"
   msg "Adding config files and fonts"
-  sed -i "s/deepin-wine/wine/" "${srcdir}/deepintimdir/drive_c/deepin/EnvInit.sh"
   tar -jxvf reg_files.tar.bz2 -C "${srcdir}/"
   cp userdef.reg "${srcdir}/deepintimdir/userdef.reg"
   cp system.reg "${srcdir}/deepintimdir/system.reg"
@@ -50,7 +49,7 @@ build() {
 package() {
   msg "Preparing icons ..."
   install -d "${pkgdir}/usr/share"
-  cp -a ${srcdir}/dpkgdir/usr/local/share/* "${pkgdir}/usr/share/"
+  cp -a ${srcdir}/dpkgdir/usr/share/* "${pkgdir}/usr/share/"
   msg "Copying TIM to /opt/deepinwine/apps/Deepin-TIM ..."
   install -d "${pkgdir}/opt/deepinwine/apps/Deepin-TIM"
   install -m644 "${srcdir}/files.7z" "${pkgdir}/opt/deepinwine/apps/Deepin-TIM/"

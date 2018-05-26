@@ -21,14 +21,14 @@ pkgbase = deepin-wine-tim
 	conflicts = wine-tim
 	conflicts = deepin.com.qq.office
 	conflicts = deepin-tim-for-arch
-	source = https://mirrors.ustc.edu.cn/deepin/pool/non-free/d/deepin.com.qq.office/deepin.com.qq.office_2.0.0deepin1_i386.deb
+	source = http://packages.deepin.com/deepin/pool/non-free/d/deepin.com.qq.office/deepin.com.qq.office_2.0.0deepin3_i386.deb
 	source = http://dldir1.qq.com/qqfile/qq/TIM2.1.5/23141/TIM2.1.5.exe
 	source = run.sh
 	source = reg_files.tar.bz2
 	source = update.policy
-	md5sums = 3d2b0f0449a8ba9297974e5a06df959b
+	md5sums = 2acda3caeb774ac97fdb8754e8b1d549
 	md5sums = 9d228e78e544b6b5f103de233d169240
-	md5sums = ef83e85c848bd5e02df6c86e29241c7f
+	md5sums = df5f48e88b91ec3bc944cfe2ec9ca342
 	md5sums = ebde755e3bd213550f5ccc69d3192060
 	md5sums = a66646b473a3fbad243ac1afd64da07a
 

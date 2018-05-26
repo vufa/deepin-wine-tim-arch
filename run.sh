@@ -10,6 +10,7 @@ APPDIR="/opt/deepinwine/apps/Deepin-TIM"
 APPVER="2.1.5"
 APPTAR="files.7z"
 PACKAGENAME="com.qq.tim"
+WINE_CMD="wine"
 
 HelpApp()
 {
@@ -20,12 +21,18 @@ HelpApp()
 }
 CallApp()
 {
-	if [ ! -f $WINEPREFIX/reinstalled ]
+	if [ ! -f "$WINEPREFIX/reinstalled" ]
 	then
 		touch $WINEPREFIX/reinstalled
-		env WINEPREFIX=$WINEPREFIX wine $APPDIR/TIM$APPVER.exe
+		env WINEPREFIX="$WINEPREFIX" $WINE_CMD $APPDIR/TIM$APPVER.exe
 	else
-		bash "$WINEPREFIX/drive_c/deepin/EnvInit.sh"
+        #disable Tencent MiniBrowser
+        _DeleteRegistry "HKCU\\Software\\Tencent\\MiniBrowser"
+
+        #Support use native file dialog
+        export ATTACH_FILE_DIALOG=1
+
+        env WINEPREFIX="$WINEPREFIX" $WINE_CMD "c:\\Program Files\\Tencent\\TIM\\Bin\\TIM.exe" &
 	fi
 }
 ExtractApp()
