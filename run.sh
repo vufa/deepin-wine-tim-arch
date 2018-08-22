@@ -32,7 +32,7 @@ CallApp()
         #Support use native file dialog
         export ATTACH_FILE_DIALOG=1
 
-        env WINEPREFIX="$WINEPREFIX" $WINE_CMD "c:\\Program Files\\Tencent\\TIM\\Bin\\TIM.exe" &
+        env WINEPREFIX="$WINEPREFIX" WINEDEBUG=-msvcrt $WINE_CMD "c:\\Program Files\\Tencent\\TIM\\Bin\\TIM.exe" &
 	fi
 }
 ExtractApp()
