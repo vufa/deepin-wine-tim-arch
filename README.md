@@ -56,6 +56,8 @@ yaourt deepin-wine-tim
 * 1.在 2k/4k 屏幕下字体和图标都非常小, 参见[issue1](https://github.com/countstarlight/deepin-wine-tim-arch/issues/1)
 * 2.使用全局截图快捷键和解决Gnome上窗口化问题，参见[issue2](https://github.com/countstarlight/deepin-wine-tim-arch/issues/2)
 ## 更新日志
+
+* 2019-02-05 TIM-2.3.1_3
 * 2018-02-23 TIM-2.1.5
 * 2017-12-23 TIM-2.1.0
 * 2017-11-28 修复音频功能（麦克风录音和播放语音消息）
