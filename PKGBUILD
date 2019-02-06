@@ -5,7 +5,7 @@
 pkgname=deepin-wine-tim
 pkgver=2.3.1_3
 deepintimver=2.0.0deepin4
-pkgrel=4
+pkgrel=5
 pkgdesc="Tencent TIM (com.qq.office) on Deepin Wine For Archlinux"
 arch=("x86_64")
 url="http://tim.qq.com/"
