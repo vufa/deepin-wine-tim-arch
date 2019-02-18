@@ -32,7 +32,7 @@ pkgbase = deepin-wine-tim
 	md5sums = d5c37cb4f960e13111ce24dbc0dd2d58
 	md5sums = ecd2cbce6f497f045e7920e3c7468db2
 	md5sums = cd6a7a61ff94739d9f125840df0592bb
-	md5sums = a42623119932e5b2a638e647d79f967d
+	md5sums = a68c3271fa4858d956aac29ade6c602e
 	md5sums = a66646b473a3fbad243ac1afd64da07a
 
 pkgname = deepin-wine-tim
