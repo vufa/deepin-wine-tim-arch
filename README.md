@@ -13,9 +13,9 @@ Deepin打包的TIM容器移植到Archlinux，包含定制的注册表配置，TI
 * [@ssfdust](https://github.com/ssfdust) 的 [wszqkzqk-deepin-wine-tim-arch](https://github.com/ssfdust/wszqkzqk-deepin-wine-tim-arch)
 
 存在如下问题：
-  * 1.不能视频通话
-  * 2.不能记住密码
-  * 3.网络连接状态改变后不能重连: [issue19](https://github.com/countstarlight/deepin-wine-tim-arch/issues/19)
+  1. 不能视频通话
+  2. 不能记住密码
+  3. 网络连接状态改变后不能重连: [issue19](https://github.com/countstarlight/deepin-wine-tim-arch/issues/19)
 
 ## 安装
 
@@ -34,9 +34,9 @@ Deepin打包的TIM容器移植到Archlinux，包含定制的注册表配置，TI
 +Include = /etc/pacman.d/mirrorlist
 ```
 
-* 1.已添加到AUR [deepin-wine-tim](https://aur.archlinux.org/packages/deepin-wine-tim/)，可直接安装:
+* 1.已添加到AUR [deepin-wine-tim](https://aur.archlinux.org/packages/deepin-wine-tim/)，可使用 yay 安装安装:
 ```shell
-yaourt deepin-wine-tim
+ yay -S deepin-wine-tim
 ```
 
 * 2.手动安装
