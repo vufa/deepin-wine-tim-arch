@@ -3,7 +3,7 @@
 # Maintainer: ssfdust <ssfdust@gmail.com>
 
 pkgname=deepin-wine-tim
-pkgver=2.3.1_3
+pkgver=2.3.2.21158
 deepintimver=2.0.0deepin4
 pkgrel=5
 pkgdesc="Tencent TIM (com.qq.office) on Deepin Wine For Archlinux"
@@ -15,13 +15,13 @@ conflicts=('wine-tim' 'deepin.com.qq.office' 'deepin-tim-for-arch')
 install="deepin-wine-tim.install"
 _mirror="https://mirrors.ustc.edu.cn/deepin"
 source=("$_mirror/pool/non-free/d/deepin.com.qq.office/deepin.com.qq.office_${deepintimver}_i386.deb"
-  "https://qd.myapp.com/myapp/qqteam/tim/down/TIM${pkgver}.exe"
+  "https://dldir1.qq.com/qqfile/qq/PCTIM2.3.2/21158/TIM${pkgver}.exe"
   "run.sh"
   "reg_files.tar.bz2"
   "update.policy")
 md5sums=('d5c37cb4f960e13111ce24dbc0dd2d58'
-  'ecd2cbce6f497f045e7920e3c7468db2'
-  'cd6a7a61ff94739d9f125840df0592bb'
+  '11477a70c36eee0574860590b4bc8bd0'
+  'f6bc17d613cc49b933910effc5dd4554'
   'a68c3271fa4858d956aac29ade6c602e'
   'a66646b473a3fbad243ac1afd64da07a')
 
@@ -42,6 +42,7 @@ build() {
   cp user.reg "${srcdir}/deepintimdir/user.reg"
   ln -sf "/usr/share/fonts/wenquanyi/wqy-microhei/wqy-microhei.ttc" "${srcdir}/deepintimdir/drive_c/windows/Fonts/wqy-microhei.ttc"
   ln -sf "/usr/share/fonts/adobe-source-han-sans/SourceHanSansCN-Medium.otf" "${srcdir}/deepintimdir/drive_c/windows/Fonts/SourceHanSansCN-Medium.otf"
+  ln -sf "/usr/share/fonts/adobe-source-han-serif/SourceHanSerifCN-Medium.otf" "${srcdir}/deepintimdir/drive_c/windows/Fonts/SourceHanSerifCN-Medium.otf"
   msg "Repackaging app archive ..."
   7z a -t7z -r "${srcdir}/files.7z" "${srcdir}/deepintimdir/*"
 }
