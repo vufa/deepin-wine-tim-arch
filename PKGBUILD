@@ -22,7 +22,7 @@ source=("$_mirror/pool/non-free/d/deepin.com.qq.office/deepin.com.qq.office_${de
 md5sums=('d5c37cb4f960e13111ce24dbc0dd2d58'
   '11477a70c36eee0574860590b4bc8bd0'
   'f6bc17d613cc49b933910effc5dd4554'
-  '37af24493f4cbf092ff9bc88958fbf2b'
+  '95b34d8ae2577de9bc5ff56ed7de24a1'
   'a66646b473a3fbad243ac1afd64da07a')
 
 build() {
