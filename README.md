@@ -52,7 +52,22 @@ yay -S deepin-wine-tim
 
 * 运行开始菜单中创建的TIM，点击立即安装
 * 安装完可直接启动，以后启动时无需安装
-* 默认使用文泉驿微米黑(`wqy-microhei`)字体，要使用其他字体，如 微软雅黑或者微软宋体放进`～/.deepinwine/Deepin-TIM/drive_c/windows/Fonts`中。
+## 字体
+
+默认使用文泉驿微米黑(`wqy-microhei`)字体，目前有字体虚化、模糊问题，可以使用Windows平台常用字体，直接将字体文件或字体链接文件放置到字体文件夹就会生效
+
+字体文件夹在：`$HOME/.deepinwine/Deepin-TIM/drive_c/windows/Fonts`
+
+* 中易宋体(SimSun)：`simsun.ttf` 或 `simsun.ttc`：
+
+  ![simsun](simsun.png)
+
+* 微软雅黑：`msyh.ttf`：
+
+  ![msyh](msyh.png)
+
+* (繁体)细明体(MingLiU)：`mingliu.ttf` 或 `mingliu.ttc`
+* (繁体)新细明体(PMingLiU)：`pmingliu.ttf` 或 `pmingliu.ttc`
 ## 常见问题
 * 1.在 2k/4k 屏幕下字体和图标都非常小, 参见[issue1](https://github.com/countstarlight/deepin-wine-tim-arch/issues/1)
 * 2.使用全局截图快捷键和解决Gnome上窗口化问题，参见[issue2](https://github.com/countstarlight/deepin-wine-tim-arch/issues/2)
