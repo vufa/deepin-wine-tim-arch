@@ -13,8 +13,6 @@ arch:
   - wine_gecko
   - xorg-xwininfo
   - wqy-microhei
-  - adobe-source-han-sans-cn-fonts
-  - adobe-source-han-serif-cn-fonts
   - lib32-alsa-lib
   - lib32-alsa-plugins
   - lib32-libpulse
