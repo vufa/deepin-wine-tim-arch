@@ -16,7 +16,7 @@
   </a>
 </p>
 
-Deepin打包的TIM容器移植到Archlinux，包含定制的注册表配置，TIM安装包替换为官方最新
+Deepin打包的TIM容器移植到Archlinux，不依赖`deepin-wine`，包含定制的注册表配置，TIM安装包替换为官方最新
 
 - [安装](#安装)
 - [字体](#字体)

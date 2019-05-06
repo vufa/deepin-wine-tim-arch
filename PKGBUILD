@@ -5,7 +5,7 @@
 pkgname=deepin-wine-tim
 pkgver=2.3.2.21158
 deepintimver=2.0.0deepin4
-pkgrel=6
+pkgrel=7
 pkgdesc="Tencent TIM (com.qq.office) on Deepin Wine For Archlinux"
 arch=("x86_64")
 url="http://tim.qq.com/"
@@ -17,13 +17,11 @@ _mirror="https://mirrors.ustc.edu.cn/deepin"
 source=("$_mirror/pool/non-free/d/deepin.com.qq.office/deepin.com.qq.office_${deepintimver}_i386.deb"
   "https://dldir1.qq.com/qqfile/qq/PCTIM2.3.2/21158/TIM${pkgver}.exe"
   "run.sh"
-  "reg_files.tar.bz2"
-  "update.policy")
+  "reg.patch")
 md5sums=('d5c37cb4f960e13111ce24dbc0dd2d58'
   '11477a70c36eee0574860590b4bc8bd0'
   'afeded77e4fc00afaa4e79dee87b38b9'
-  '689a3626ecf5ef77d3f6ca71c2b3eccc'
-  'a66646b473a3fbad243ac1afd64da07a')
+  '38271ce3d662868baa1bca45cbb49018')
 
 build() {
   msg "Extracting DPKG package ..."
@@ -34,12 +32,9 @@ build() {
   7z x -aoa "${srcdir}/dpkgdir/opt/deepinwine/apps/Deepin-TIM/files.7z" -o"${srcdir}/deepintimdir"
   msg "Removing original outdated TIM directory ..."
   rm -r "${srcdir}/deepintimdir/drive_c/Program Files/Tencent/TIM"
-  msg "Adding config files and fonts"
-  tar -jxvf reg_files.tar.bz2 -C "${srcdir}/"
-  cp userdef.reg "${srcdir}/deepintimdir/userdef.reg"
-  cp system.reg "${srcdir}/deepintimdir/system.reg"
-  cp update.policy "${srcdir}/deepintimdir/update.policy"
-  cp user.reg "${srcdir}/deepintimdir/user.reg"
+  msg "Patching reg files ..."
+  patch -p1 -d "${srcdir}/deepintimdir/" < "${srcdir}/reg.patch"
+  msg "Adding font file ..."
   ln -sf "/usr/share/fonts/wenquanyi/wqy-microhei/wqy-microhei.ttc" "${srcdir}/deepintimdir/drive_c/windows/Fonts/wqy-microhei.ttc"
   msg "Repackaging app archive ..."
   7z a -t7z -r "${srcdir}/files.7z" "${srcdir}/deepintimdir/*"
