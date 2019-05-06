@@ -44,14 +44,9 @@ Deepin打包的TIM容器移植到Archlinux，不依赖`deepin-wine`，包含定�
 ```
 
 * 1.已添加到AUR [deepin-wine-tim](https://aur.archlinux.org/packages/deepin-wine-tim/)，可使用 `yay` 或 `yaourt` 安装:
+
 ```shell
 yay -S deepin-wine-tim
-```
-
-如果添加了archlinuxcn源，这会直接从源里安装，源相对AUR仓库有一定的延迟，要从AUR仓库安装:
-
-```shell
-yay deepin-wine-tim
 ```
 
 * 2.手动安装
@@ -64,7 +59,7 @@ yay deepin-wine-tim
  makepkg -si
 ```
 
-* 运行开始菜单中创建的TIM快捷方式，开始安装TIM
+* 运行应用菜单中创建的TIM快捷方式，开始安装TIM
 
 * 安装完可直接启动
 
