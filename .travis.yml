@@ -24,3 +24,13 @@ arch:
 
 script:
 - "curl -s https://raw.githubusercontent.com/mikkeloscar/arch-travis/master/arch-travis.sh | bash"
+
+deploy:
+  provider: releases
+  skip_cleanup: true
+  api_key: $GH_TOKEN
+  file_glob: true
+  file:
+    - "deepin-wine-tim-*-x86_64.pkg.tar.xz"
+  on:
+    tags: true

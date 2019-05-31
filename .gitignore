@@ -1,8 +1,7 @@
-.directory
 TIM*
 deepin.com.qq*
 deepin-wine-tim-2*
-pkg/
-src/
-reg_tmp/
-reg_tmp_fixed/
+/pkg/
+/src/
+/reg_tmp/
+/reg_tmp_fixed/
