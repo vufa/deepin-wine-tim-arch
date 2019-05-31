@@ -18,13 +18,20 @@
 
 Deepin打包的TIM容器移植到Archlinux，不依赖`deepin-wine`，包含定制的注册表配置，TIM安装包替换为官方最新
 
+<!-- TOC -->
+
 - [安装](#安装)
+    - [从AUR安装](#从aur安装)
+    - [从GitHub Release 安装](#从github-release-安装)
+    - [从源码安装](#从源码安装)
 - [字体](#字体)
     - [使用其他字体](#使用其他字体)
     - [修复字体模糊](#修复字体模糊)
 - [常见问题](#常见问题)
 - [感谢](#感谢)
 - [更新日志](#更新日志)
+
+<!-- /TOC -->
 
 ## 安装
 
@@ -43,13 +50,25 @@ Deepin打包的TIM容器移植到Archlinux，不依赖`deepin-wine`，包含定�
 +Include = /etc/pacman.d/mirrorlist
 ```
 
-* 1.已添加到AUR [deepin-wine-tim](https://aur.archlinux.org/packages/deepin-wine-tim/)，可使用 `yay` 或 `yaourt` 安装:
+### 从AUR安装
+
+已添加到AUR [deepin-wine-tim](https://aur.archlinux.org/packages/deepin-wine-tim/)，可使用 `yay` 或 `yaourt` 安装:
 
 ```shell
 yay -S deepin-wine-tim
 ```
 
-* 2.手动安装
+### 从GitHub Release 安装
+
+> 由[Travis CI](https://travis-ci.org/countstarlight/deepin-wine-tim-arch)在Docker容器[mikkeloscar/arch-travis](https://hub.docker.com/r/mikkeloscar/arch-travis)中自动构建的ArchLinux安装包
+
+在[GitHub Release](https://github.com/countstarlight/deepin-wine-tim-arch/releases)页面下载 `.pkg.tar.xz`后缀的安装包，使用`pacman`安装：
+
+```bash
+sudo pacman -U #下载的包名
+```
+
+### 从源码安装
 
 ```shell
  git clone https://github.com/countstarlight/deepin-wine-tim-arch.git
