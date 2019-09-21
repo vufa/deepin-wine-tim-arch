@@ -28,9 +28,12 @@ script:
 deploy:
   provider: releases
   skip_cleanup: true
+  overwrite: true
   api_key: $GH_TOKEN
   file_glob: true
   file:
-    - "/build/deepin-wine-tim-*-x86_64.pkg.tar.xz"
+    - "deepin-wine-tim-*-x86_64.pkg.tar.xz"
   on:
     tags: true
+    all_branches: true
+    repo: countstarlight/deepin-wine-tim-arch
