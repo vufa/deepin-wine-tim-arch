@@ -6,10 +6,13 @@
     <img src="https://travis-ci.org/countstarlight/deepin-wine-tim-arch.svg?branch=master" alt="Build Status">
   </a>
   <a href="https://office.qq.com/download.html">
-    <img src="https://img.shields.io/badge/TIM-2.3.2.21158-blue.svg" alt="TIM Version">
+    <img src="https://img.shields.io/badge/TIM-2.3.2.21173-blue.svg" alt="TIM Version">
   </a>
   <a href="https://aur.archlinux.org/packages/deepin-wine-tim/">
     <img src="https://img.shields.io/aur/version/deepin-wine-tim.svg" alt="AUR Version">
+  </a>
+  <a href="https://github.com/countstarlight/deepin-wine-tim-arch/releases">
+    <img src="https://img.shields.io/github/downloads/countstarlight/deepin-wine-tim-arch/total.svg" alt="GitHub Release">
   </a>
   <a href="https://github.com/countstarlight/deepin-wine-tim-arch/issues">
     <img src="https://img.shields.io/github/issues/countstarlight/deepin-wine-tim-arch.svg" alt="GitHub Issues">
@@ -21,9 +24,10 @@ Deepin 打包的 TIM 容器移植到 Archlinux，不依赖 `deepin-wine`，包�
 <!-- TOC -->
 
 - [安装](#安装)
-    - [从AUR安装](#从-aur-安装)
-    - [从GitHub Release 安装](#从-github-release-安装)
-    - [从源码安装](#从源码安装)
+    - [从AUR安装](#从aur安装)
+    - [用安装包安装](#用安装包安装)
+    - [本地打包安装](#本地打包安装)
+- [切换到 `deepin-wine`](#切换到-deepin-wine)
 - [字体](#字体)
     - [使用其他字体](#使用其他字体)
     - [修复字体模糊](#修复字体模糊)
@@ -50,7 +54,7 @@ Deepin 打包的 TIM 容器移植到 Archlinux，不依赖 `deepin-wine`，包�
 +Include = /etc/pacman.d/mirrorlist
 ```
 
-### 从 AUR 安装
+### 从AUR安装
 
 已添加到 AUR [deepin-wine-tim](https://aur.archlinux.org/packages/deepin-wine-tim/)，使用 `yay` 安装（如未安装 `yay`，请先 `pacman -S yay` 进行安装）：
 
@@ -58,7 +62,7 @@ Deepin 打包的 TIM 容器移植到 Archlinux，不依赖 `deepin-wine`，包�
 yay -S deepin-wine-tim
 ```
 
-### 从 GitHub Release 安装
+### 用安装包安装
 
 > 由 [Travis CI](https://travis-ci.org/countstarlight/deepin-wine-tim-arch) 在 Docker 容器 [mikkeloscar/arch-travis](https://hub.docker.com/r/mikkeloscar/arch-travis) 中自动构建的 ArchLinux 安装包
 
@@ -68,7 +72,7 @@ yay -S deepin-wine-tim
 sudo pacman -U #下载的包名
 ```
 
-### 从源码安装
+### 本地打包安装
 
 ```shell
  git clone https://github.com/countstarlight/deepin-wine-tim-arch.git
@@ -81,6 +85,41 @@ sudo pacman -U #下载的包名
 * 运行应用菜单中创建的 TIM 快捷方式，开始安装 TIM
 
 * 安装完可直接启动
+
+## 切换到 `deepin-wine`
+
+由于原版 `wine` 在DDE(Deepin Desktop Environment)上，存在托盘图标无法响应鼠标事件([deepin-wine-tim-arch#21](https://github.com/countstarlight/deepin-wine-tim-arch/issues/21))等问题，且原版 `wine` 尚不能实现保存登录密码等功能，可以选择切换到 `deepin-wine`。
+
+根据 [deepin-wine-tim-arch#15](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/15#issuecomment-515455845)，由 [@feileb](https://github.com/feileb) 和 [@violetbobo](https://github.com/violetbobo) 提供的方法：
+
+* 1. 安装 deepin-wine
+
+```bash
+yay -S deepin-wine
+```
+
+* 2. 修改 `deepin-wine-tim` 的启动文件
+
+/opt/deepinwine/tools/run.sh
+
+/opt/deepinwine/apps/Deepin-TIM/run.sh
+
+修改这两个文件中的 `WINE_CMD` 的值：
+
+```diff
+-WINE_CMD="wine"
++WINE_CMD="deepin-wine"
+```
+
+**注意：对 `/opt/deepinwine/apps/Deepin-TIM/run.sh` 的修改会在 `deepin-wine-tim` 更新或重装时被覆盖，可以单独拷贝一份作为启动脚本**
+
+* 3. 修复 `deepin-wine` 字体渲染发虚
+
+```bash
+yay -S lib32-freetype2-infinality-ultimate
+```
+
+**注意：切换到 `deepin-wine` 后，对 `wine` 的修改，如更改dpi，都改为对 `deepin-wine` 的修改**
 
 ## 字体
 
@@ -137,6 +176,7 @@ Windows 10 自带字体及版本：<https://docs.microsoft.com/en-us/typography/
 
 ## 更新日志
 
+* 2019-09-21 TIM-2.3.2.21173
 * 2019-03-06 TIM-2.3.2.21158
 * 2019-02-05 TIM-2.3.1_3
 * 2018-02-23 TIM-2.1.5
