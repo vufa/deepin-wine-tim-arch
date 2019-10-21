@@ -47,4 +47,13 @@ package() {
   install -m644 "${srcdir}/files.7z" "${pkgdir}/opt/deepinwine/apps/Deepin-TIM/"
   install -m755 "${srcdir}/run.sh" "${pkgdir}/opt/deepinwine/apps/Deepin-TIM/"
   install -m644 "${srcdir}/TIM$pkgver.exe" "${pkgdir}/opt/deepinwine/apps/Deepin-TIM/"
+  msg "Printing help info ..."
+  echo -e "\033[0;34m=========================提示/INFO==============================="
+  echo -e "\033[0;34m* 报告问题(Report issue):"
+  echo -e "\033[0;34m  https://github.com/countstarlight/deepin-wine-tim-arch/issues"
+  echo -e "\033[0;34m* 切换到 'deepin-wine'(Switch to 'deepin-wine'):"
+  echo -e "\033[0;34m  https://github.com/countstarlight/deepin-wine-tim-arch"
+  echo -e "\033[0;34m* 安装包下载(Installation package download):"
+  echo -e "\033[0;34m  https://github.com/countstarlight/deepin-wine-tim-arch/releases"
+  echo -e "\033[0;34m================================================================="
 }
