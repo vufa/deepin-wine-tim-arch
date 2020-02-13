@@ -26,6 +26,7 @@ build() {
   mkdir -p "${srcdir}/dpkgdir"
   tar -xvf data.tar.xz -C "${srcdir}/dpkgdir"
   sed "s/\(Categories.*$\)/\1Network;/" -i "${srcdir}/dpkgdir/usr/share/applications/deepin.com.qq.office.desktop"
+  sed "13s/TIM.exe/tim.exe/" -i "${srcdir}/dpkgdir/usr/share/applications/deepin.com.qq.office.desktop"
   msg "Extracting Deepin Wine TIM archive ..."
   7z x -aoa "${srcdir}/dpkgdir/opt/deepinwine/apps/Deepin-TIM/files.7z" -o"${srcdir}/deepintimdir"
   msg "Removing original outdated TIM directory ..."
