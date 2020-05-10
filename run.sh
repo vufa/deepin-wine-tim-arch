@@ -17,6 +17,7 @@ HelpApp()
 	echo " Extra Commands:"
 	echo " -r/--reset     Reset app to fix errors"
 	echo " -e/--remove    Remove deployed app files"
+	echo " -d/--deepin    Switch to 'deepin-wine'"
 	echo " -h/--help      Show program help info"
 }
 CallApp()
@@ -93,6 +94,39 @@ CreateBottle()
     fi
 }
 
+SwitchToDeepinWine()
+{
+	PACKAGE_MANAGER="yay"
+	if ! [ -x "$(command -v yay)" ]; then
+		if ! [ -x "$(command -v yaourt)" ]; then
+			echo "Error: Need to install 'yay' or 'yaourt' first." >&2
+			exit 1
+		else
+			$PACKAGE_MANAGER="yaourt"
+		fi
+    fi
+	echo -e "\033[0;34mInstalling dependencies ...\033[0m"
+	$PACKAGE_MANAGER -S deepin-wine xsettingsd lib32-freetype2-infinality-ultimate --needed
+	echo -e "\033[0;34mRedeploying app ...\033[0m"
+	if [ -d "$WINEPREFIX" ]; then
+		RemoveApp
+	fi
+	DeployApp
+	echo -e "\033[0;34mReversing the patch ...\033[0m"
+	patch -p1 -R -d  ${WINEPREFIX} < $APPDIR/reg.patch
+	echo -e "\033[0;34mCreating flag file '$WINEPREFIX/deepin' ...\033[0m"
+	touch -f $WINEPREFIX/deepin
+	echo -e "\033[0;34mDone.\033[0m"
+}
+
+# Init
+if [ -f "$WINEPREFIX/deepin" ]; then
+	WINE_CMD="deepin-wine"
+	if [[ -z "$(ps -e | grep -o gsd-xsettings)" ]] && [[ -z "$(ps -e | grep -o xsettingsd)" ]]; then
+		/usr/bin/xsettingsd &
+	fi
+fi
+
 if [ -z $1 ]; then
 	RunApp
 	exit 0
@@ -106,6 +140,9 @@ case $1 in
 		;;
 	"-e" | "--remove")
 		RemoveApp
+		;;
+	"-d" | "--deepin")
+		SwitchToDeepinWine
 		;;
 	"-u" | "--uri")
 		RunApp $2

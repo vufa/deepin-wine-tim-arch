@@ -3,7 +3,7 @@
 pkgname=deepin-wine-tim
 pkgver=3.0.0.21315
 deepintimver=2.0.0deepin4
-pkgrel=1
+pkgrel=2
 pkgdesc="Tencent TIM (com.qq.office) on Deepin Wine For Archlinux"
 arch=("x86_64")
 url="http://tim.qq.com/"
@@ -18,7 +18,7 @@ source=("$_mirror/pool/non-free/d/deepin.com.qq.office/deepin.com.qq.office_${de
   "reg.patch")
 md5sums=('d5c37cb4f960e13111ce24dbc0dd2d58'
   '05ccc6f90f26170c83f00d28628c1e2b'
-  '812b2e77ab9b559278915eeb803a2d9e'
+  '73930f0bdd8004536ea59d29eb943ad3'
   '79efbcfa58f4f3d539f09ed5951a0899')
 
 build() {
@@ -46,15 +46,7 @@ package() {
   msg "Copying TIM to /opt/deepinwine/apps/Deepin-TIM ..."
   install -d "${pkgdir}/opt/deepinwine/apps/Deepin-TIM"
   install -m644 "${srcdir}/files.7z" "${pkgdir}/opt/deepinwine/apps/Deepin-TIM/"
+  install -m644 "${srcdir}/reg.patch" "${pkgdir}/opt/deepinwine/apps/Deepin-TIM/"
   install -m755 "${srcdir}/run.sh" "${pkgdir}/opt/deepinwine/apps/Deepin-TIM/"
   install -m644 "${srcdir}/TIM$pkgver.exe" "${pkgdir}/opt/deepinwine/apps/Deepin-TIM/"
-  msg "Printing help info ..."
-  echo -e "\033[0;34m=========================提示/INFO==============================="
-  echo -e "\033[0;34m* 报告问题(Report issue):"
-  echo -e "\033[0;34m  https://github.com/countstarlight/deepin-wine-tim-arch/issues"
-  echo -e "\033[0;34m* 切换到 'deepin-wine'(Switch to 'deepin-wine'):"
-  echo -e "\033[0;34m  https://github.com/countstarlight/deepin-wine-tim-arch"
-  echo -e "\033[0;34m* 安装包下载(Installation package download):"
-  echo -e "\033[0;34m  https://github.com/countstarlight/deepin-wine-tim-arch/releases"
-  echo -e "\033[0;34m================================================================="
 }

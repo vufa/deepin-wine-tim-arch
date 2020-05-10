@@ -28,11 +28,12 @@ Deepin 打包的 TIM 容器移植到 Archlinux，不依赖 `deepin-wine`，包�
     - [用安装包安装](#用安装包安装)
     - [本地打包安装](#本地打包安装)
 - [切换到 `deepin-wine`](#切换到-deepin-wine)
-    - [1. 安装 deepin-wine](#1-安装-deepin-wine)
-    - [2. 修改 `deepin-wine-tim` 的启动文件](#2-修改-deepin-wine-tim-的启动文件)
-    - [3. 对于非 GNOME 桌面(KDE, XFCE等)](#3-对于非-gnome-桌面kde-xfce等)
-    - [4. 删除原先的TIM目录](#4-删除原先的tim目录)
-    - [5. 修复 `deepin-wine` 字体渲染发虚](#5-修复-deepin-wine-字体渲染发虚)
+    - [自动切换](#自动切换)
+    - [手动切换](#手动切换)
+        - [1. 安装 `deepin-wine`](#1-安装-deepin-wine)
+        - [2. 对于非 GNOME 桌面(KDE, XFCE等)](#2-对于非-gnome-桌面kde-xfce等)
+        - [3. 删除已安装的TIM目录](#3-删除已安装的tim目录)
+        - [4. 修复 `deepin-wine` 字体渲染发虚](#4-修复-deepin-wine-字体渲染发虚)
 - [字体](#字体)
     - [使用其他字体](#使用其他字体)
     - [修复字体模糊](#修复字体模糊)
@@ -103,44 +104,62 @@ sudo pacman -U #下载的包名
 
 ## 切换到 `deepin-wine`
 
-由于原版 `wine` 在 [DDE(Deepin Desktop Environment)](https://www.deepin.org/dde/) 上，存在托盘图标无法响应鼠标事件([deepin-wine-tim-arch#21](https://github.com/countstarlight/deepin-wine-tim-arch/issues/21))，边框穿透显示([deepin-wine-wechat-arch#15](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/15)), 无法截图等问题，且原版 `wine` 尚不能实现保存登录密码等功能，可以选择切换到 `deepin-wine`。
+原版 `wine` 在 [DDE(Deepin Desktop Environment)](https://www.deepin.org/dde/) 上，有托盘图标无法响应鼠标事件([deepin-wine-tim-arch#21](https://github.com/countstarlight/deepin-wine-tim-arch/issues/21))的问题，且原版 `wine` 尚不能实现保存登录密码等功能，可以选择切换到 `deepin-wine`。
+
+**注意：切换前先确保 `deepin-wine` 支持**
 
 根据 [deepin-wine-wechat-arch#15](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/15#issuecomment-515455845)，[deepin-wine-wechat-arch#27](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/27)，由 [@feileb](https://github.com/feileb), [@violetbobo](https://github.com/violetbobo), [@HE7086](https://github.com/HE7086)提供的方法：
 
-### 1. 安装 deepin-wine
+
+### 自动切换
+
+```bash
+/opt/deepinwine/apps/Deepin-TIM/run.sh -d
+```
+
+这会安装需要的依赖，移除已安装的TIM目录并回退对注册表文件的修改
+
+切换回 `wine`：
+
+```bash
+rm ~/.deepinwine/Deepin-TIM/deepin
+```
+
+如果要卸载自动安装的依赖：
+
+```bash
+sudo pacman -Rns deepin-wine xsettingsd lib32-freetype2-infinality-ultimate
+```
+
+### 手动切换
+
+#### 1. 安装 `deepin-wine`
 
 ```bash
 yay -S deepin-wine
 ```
 
-### 2. 修改 `deepin-wine-tim` 的启动文件
+#### 2. 对于非 GNOME 桌面(KDE, XFCE等)
 
-修改如下两个文件中的 `WINE_CMD` 的值：
+需要安装 `xsettingsd`：
 
-`/opt/deepinwine/tools/run.sh`
+根据 [deepin-wine-wechat-arch#36](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/36#issuecomment-612001200)，由[Face-Smile](https://github.com/Face-Smile)提供的方法：
 
-`/opt/deepinwine/apps/Deepin-TIM/run.sh`
+```bash
+sudo pacman -S xsettingsd
+```
+
+修改 `/opt/deepinwine/apps/Deepin-TIM/run.sh`：
 
 ```diff
 -WINE_CMD="wine"
 +WINE_CMD="deepin-wine"
-```
 
-### 3. 对于非 GNOME 桌面(KDE, XFCE等)
-
-需要安装 `gnome-settings-daemon`
-
-```bash
-sudo pacman -Sy gnome-settings-daemon
-```
-并在 `/opt/deepinwine/apps/Deepin-TIM/run.sh` 中加入如下几行：
-
-```diff
  RunApp()
  {
-+    if [[ -z "$(ps -e | grep -o gsd-xsettings)" ]]
++    if [[ -z "$(ps -e | grep -o xsettingsd)" ]]
 +    then
-+        /usr/lib/gsd-xsettings &
++        /usr/bin/xsettingsd &
 +    fi
         if [ -d "$WINEPREFIX" ]; then
                 UpdateApp
@@ -149,13 +168,17 @@ sudo pacman -Sy gnome-settings-daemon
 
 **注意：对 `/opt/deepinwine/apps/Deepin-TIM/run.sh` 的修改会在 `deepin-wine-tim` 更新或重装时被覆盖，可以单独拷贝一份作为启动脚本**
 
-### 4. 删除原先的TIM目录
+#### 3. 删除已安装的TIM目录
 
 ```bash
 rm -rf ~/.deepinwine/Deepin-TIM
 ```
 
-### 5. 修复 `deepin-wine` 字体渲染发虚
+#### 4. 修复 `deepin-wine` 字体渲染发虚
+
+kde桌面参考：[deepin-wine-wechat-arch#36](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/36)
+
+deepin 桌面：
 
 ```bash
 yay -S lib32-freetype2-infinality-ultimate
