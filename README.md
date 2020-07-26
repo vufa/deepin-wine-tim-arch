@@ -28,16 +28,18 @@ Deepin 打包的 TIM 容器移植到 Archlinux，不依赖 `deepin-wine`，包�
     - [用安装包安装](#用安装包安装)
     - [本地打包安装](#本地打包安装)
 - [切换到 `deepin-wine`](#切换到-deepin-wine)
-    - [自动切换](#自动切换)
+    - [自动切换(推荐)](#自动切换推荐)
     - [手动切换](#手动切换)
         - [1. 安装 `deepin-wine`](#1-安装-deepin-wine)
         - [2. 对于非 GNOME 桌面(KDE, XFCE等)](#2-对于非-gnome-桌面kde-xfce等)
         - [3. 删除已安装的TIM目录](#3-删除已安装的tim目录)
         - [4. 修复 `deepin-wine` 字体渲染发虚](#4-修复-deepin-wine-字体渲染发虚)
-- [字体](#字体)
+- [常见问题及解决](#常见问题及解决)
+    - [不能记住密码](#不能记住密码)
+    - [网络连接状态改变后不能重连](#网络连接状态改变后不能重连)
+    - [高分辨率屏幕支持](#高分辨率屏幕支持)
+    - [使用全局截图快捷键](#使用全局截图快捷键)
     - [使用其他字体](#使用其他字体)
-    - [修复字体模糊](#修复字体模糊)
-- [常见问题](#常见问题)
 - [感谢](#感谢)
 - [更新日志](#更新日志)
 
@@ -45,7 +47,7 @@ Deepin 打包的 TIM 容器移植到 Archlinux，不依赖 `deepin-wine`，包�
 
 ## 安装
 
-`deepin-wine-tim` 依赖`Multilib`仓库中的 `wine`，`wine_gecko` 和 `wine-mono`，Archlinux 默认没有开启` Multilib`仓库，需要编辑`/etc/pacman.conf`，取消对应行前面的注释([Archlinux wiki](https://wiki.archlinux.org/index.php/Official_repositories#multilib)):
+`deepin-wine-tim` 依赖`Multilib`仓库中的 `wine`，`wine-gecko` 和 `wine-mono`，Archlinux 默认没有开启 `Multilib`仓库，需要编辑`/etc/pacman.conf`，取消对应行前面的注释([Archlinux wiki](https://wiki.archlinux.org/index.php/Official_repositories#multilib)):
 
 ```diff
 # If you want to run 32 bit applications on your x86_64 system,
@@ -72,10 +74,16 @@ yay -S deepin-wine-tim
 
 > 由 [Travis CI](https://travis-ci.org/countstarlight/deepin-wine-tim-arch) 在 Docker 容器 [mikkeloscar/arch-travis](https://hub.docker.com/r/mikkeloscar/arch-travis) 中自动构建的 ArchLinux 安装包
 
-在[GitHub Release](https://github.com/countstarlight/deepin-wine-tim-arch/releases)页面下载 `.pkg.tar.xz`后缀的安装包，使用`pacman`安装：
+在 [GitHub Release](https://github.com/countstarlight/deepin-wine-tim-arch/releases) 页面下载后缀为 `.pkg.tar.xz` 或 `.pkg.tar.zst` 的安装包，使用`pacman`安装：
 
 ```bash
 sudo pacman -U #下载的包名
+```
+
+`.md5` 文件用于校验包完整性：
+
+```bash
+md5sum -c *.md5
 ```
 
 ### 本地打包安装
@@ -110,8 +118,7 @@ sudo pacman -U #下载的包名
 
 根据 [deepin-wine-wechat-arch#15](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/15#issuecomment-515455845)，[deepin-wine-wechat-arch#27](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/27)，由 [@feileb](https://github.com/feileb), [@violetbobo](https://github.com/violetbobo), [@HE7086](https://github.com/HE7086)提供的方法：
 
-
-### 自动切换
+### 自动切换(推荐)
 
 ```bash
 /opt/deepinwine/apps/Deepin-TIM/run.sh -d
@@ -186,50 +193,41 @@ yay -S lib32-freetype2-infinality-ultimate
 
 **注意：切换到 `deepin-wine` 后，对 `wine` 的修改，如更改dpi，都改为对 `deepin-wine` 的修改**
 
-## 字体
+## 常见问题及解决
+
+### 不能记住密码
+
+参照[切换到 `deepin-wine`](#切换到-deepin-wine) 解决
+
+### 网络连接状态改变后不能重连
+
+参照[切换到 `deepin-wine`](#切换到-deepin-wine) 解决
+
+### 高分辨率屏幕支持
+
+在 `winecfg` 的Graphics选项卡中修改dpi，如 修改为`192`
+
+对于 `wine`：
+
+```bash
+env WINEPREFIX="$HOME/.deepinwine/Deepin-TIM" winecfg
+```
+
+对于 `deepin-wine` ：
+
+```bash
+env WINEPREFIX="$HOME/.deepinwine/Deepin-TIM" deepin-wine winecfg
+```
+
+### 使用全局截图快捷键
+
+使用全局截图快捷键和解决Gnome上窗口化问题，参见[issue2](https://github.com/countstarlight/deepin-wine-tim-arch/issues/2)
 
 ### 使用其他字体
 
-默认使用文泉驿微米黑（`wqy-microhei`）字体，目前有字体虚化、模糊问题，可使用 Windows 平台常用字体替代，直接将字体文件或字体链接文件放置到字体目录即生效，不影响系统字体。
+默认使用文泉驿微米黑(`wqy-microhei`)字体，可以使用Windows平台常用字体替代，直接将字体文件或字体链接文件放置到字体文件夹就会生效，不会影响系统字体
 
-TIM 字体所在目录：`$HOME/.deepinwine/Deepin-TIM/drive_c/windows/Fonts`
-
-Windows 10 自带字体及版本：<https://docs.microsoft.com/en-us/typography/fonts/windows_10_font_list>
-
-* 中易宋体（`SimSun`）：`simsun.ttf` 或 `simsun.ttc`：
-
-  ![simsun](simsun.png)
-  
-  上图为 `SimSun Regular`
-
-* 微软雅黑（`Microsoft YaHei`）：`msyh.ttf` 或 `msyh.ttc`：
-
-  ![msyh](msyh.png)
-  
-  上图为 `Microsoft YaHei Regular`
-
-  ![msyhb](msyhb.png)
-  
-  上图为 `Microsoft YaHei Bold`
-
-* （繁体）细明体（`MingLiU`）：`mingliu.ttf` 或 `mingliu.ttc`
-* （繁体）新细明体（`PMingLiU`）：`pmingliu.ttf` 或 `pmingliu.ttc`
-
-### 修复字体模糊
-
-上述微软雅黑字体仍然比较模糊，参照 [@ohmyarch的博客](https://ohmyarch.github.io/2017/01/15/Linux%E4%B8%8B%E7%BB%88%E6%9E%81%E5%AD%97%E4%BD%93%E9%85%8D%E7%BD%AE%E6%96%B9%E6%A1%88/)配置后的微软雅黑效果较好：
-
-![msyh_fixed](msyh_fixed.png)
-
-**注意：这会修改整个系统的字体配置，且配置后的宋体（`SimSun`）等字体效果不如之前**
-
-## 常见问题
-
-- [ ] 1. 不能视频通话
-- [ ] 2. 不能记住密码
-- [ ] 3. 网络连接状态改变后不能重连: [issue19](https://github.com/countstarlight/deepin-wine-tim-arch/issues/19)
-- [x] 4. 在 2k/4k 屏幕下字体和图标都非常小, 参见 [issue1](https://github.com/countstarlight/deepin-wine-tim-arch/issues/1)
-- [x] 5. 使用全局截图快捷键和解决Gnome上窗口化问题，参见 [issue2](https://github.com/countstarlight/deepin-wine-tim-arch/issues/2)
+字体文件夹在：`$HOME/.deepinwine/Deepin-TIM/drive_c/windows/Fonts`
 
 ## 感谢
 

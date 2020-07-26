@@ -21,6 +21,7 @@ archlinux:
   - lib32-gnutls
   script:
   - "makepkg"
+  - "./gen.sh -m"
 
 script:
 - "curl -s https://raw.githubusercontent.com/mikkeloscar/arch-travis/master/arch-travis.sh | bash"
@@ -32,7 +33,7 @@ deploy:
   api_key: $GH_TOKEN
   file_glob: true
   file:
-    - "deepin-wine-tim-*-x86_64.pkg.tar.xz"
+    - "deepin-wine-tim*.pkg*"
   on:
     tags: true
     all_branches: true
