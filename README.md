@@ -6,7 +6,7 @@
     <img src="https://travis-ci.org/countstarlight/deepin-wine-tim-arch.svg?branch=master" alt="Build Status">
   </a>
   <a href="https://office.qq.com/download.html">
-    <img src="https://img.shields.io/badge/TIM-3.0.0.21315-blue.svg" alt="TIM Version">
+    <img src="https://img.shields.io/badge/TIM-3.1.0.21789-blue.svg" alt="TIM Version">
   </a>
   <a href="https://aur.archlinux.org/packages/deepin-wine-tim/">
     <img src="https://img.shields.io/aur/version/deepin-wine-tim.svg" alt="AUR Version">
@@ -239,6 +239,7 @@ env WINEPREFIX="$HOME/.deepinwine/Deepin-TIM" deepin-wine winecfg
 
 ## 更新日志
 
+* 2020-08-12 TIM-3.1.0.21789
 * 2020-04-01 TIM-3.0.0.21315
 * 2019-09-21 TIM-2.3.2.21173
 * 2019-03-06 TIM-2.3.2.21158

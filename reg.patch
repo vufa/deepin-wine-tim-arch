@@ -6,7 +6,7 @@ diff -ruN reg_tmp/system.reg reg_tmp_fixed/system.reg
  "DisplayIcon"="C:\\Program Files\\Tencent\\TIM\\TIMUninst.ico"
  "DisplayName"="TIM"
 -"DisplayVersion"="2.0.0.22317"
-+"DisplayVersion"="3.0.0.21315"
++"DisplayVersion"="3.1.0.21789"
  "EstimatedSize"=dword:0002f7d0
  "HelpLink"="http://www.tencent.com"
  "HelpTelephone"="(86) 755 86060836"
@@ -38,7 +38,7 @@ diff -ruN reg_tmp/system.reg reg_tmp_fixed/system.reg
  [Software\\Tencent\\PlatForm_Type_List\\1] 1511754918
  #time=1d367338a03faee
 -"TypeName"="TIM2.0.0"
-+"TypeName"="TIM3.0.0"
++"TypeName"="TIM3.1.0"
  "TypePath"="c:\\Program Files\\Tencent\\TIM\\Bin\\TIM.exe"
  
  [Software\\Tencent\\QQ2009\\Component] 1488419637
