@@ -1,12 +1,12 @@
 diff -ruN reg_tmp/system.reg reg_tmp_fixed/system.reg
 --- reg_tmp/system.reg	2018-07-10 09:05:51.000000000 +0800
-+++ reg_tmp_fixed/system.reg	2020-04-01 21:50:03.035389661 +0800
++++ reg_tmp_fixed/system.reg	2020-09-30 10:49:52.685269410 +0800
 @@ -33235,7 +33235,7 @@
  #time=1d375560815cedc
  "DisplayIcon"="C:\\Program Files\\Tencent\\TIM\\TIMUninst.ico"
  "DisplayName"="TIM"
 -"DisplayVersion"="2.0.0.22317"
-+"DisplayVersion"="3.1.0.21789"
++"DisplayVersion"="3.2.0.21856"
  "EstimatedSize"=dword:0002f7d0
  "HelpLink"="http://www.tencent.com"
  "HelpTelephone"="(86) 755 86060836"
@@ -38,7 +38,18 @@ diff -ruN reg_tmp/system.reg reg_tmp_fixed/system.reg
  [Software\\Tencent\\PlatForm_Type_List\\1] 1511754918
  #time=1d367338a03faee
 -"TypeName"="TIM2.0.0"
-+"TypeName"="TIM3.1.0"
++"TypeName"="TIM3.2.0"
  "TypePath"="c:\\Program Files\\Tencent\\TIM\\Bin\\TIM.exe"
  
  [Software\\Tencent\\QQ2009\\Component] 1488419637
+diff -ruN reg_tmp/user.reg reg_tmp_fixed/user.reg
+--- reg_tmp/user.reg	2018-07-10 09:05:51.000000000 +0800
++++ reg_tmp_fixed/user.reg	2020-09-30 10:47:13.175262388 +0800
+@@ -1024,6 +1024,7 @@
+ "qdantidrv.sys"=""
+ "qqsetupex.exe"=""
+ "riched20"="native,builtin"
++"tencentdl.exe"=""
+ "txplatform.exe"=""
+ "txupd.exe"=""
+ "usp10"="native,builtin"

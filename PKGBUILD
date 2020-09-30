@@ -1,7 +1,7 @@
 # Maintainer: Codist <countstarlight@gmail.com>
 
 pkgname=deepin-wine-tim
-pkgver=3.1.0.21789
+pkgver=3.2.0.21856
 deepintimver=2.0.0deepin4
 pkgrel=1
 pkgdesc="Tencent TIM (com.qq.office) on Deepin Wine For Archlinux"
@@ -13,13 +13,13 @@ conflicts=('wine-tim' 'deepin.com.qq.office' 'deepin-tim-for-arch')
 install="deepin-wine-tim.install"
 _mirror="https://mirrors.ustc.edu.cn/deepin"
 source=("$_mirror/pool/non-free/d/deepin.com.qq.office/deepin.com.qq.office_${deepintimver}_i386.deb"
-  "https://dldir1.qq.com/qqfile/qq/TIM3.1.0/TIM${pkgver}.exe"
+  "https://dldir1.qq.com/qqfile/qq/PCTIM/TIM3.2.0/TIM${pkgver}.exe"
   "run.sh"
   "reg.patch")
 md5sums=('d5c37cb4f960e13111ce24dbc0dd2d58'
-  '344c9438db69db52c86f3fa575dff143'
-  '20625edae7b3d57e9f624fe473d4f7fa'
-  '8cdb3c8863cee35a54fe5ba29e770fd3')
+  '534c33e25dfa6360f710e5df4f3da1dd'
+  '1f8cba0fbbdc57c9d710d0c59aa03f3d'
+  'd049e1171da0dc82c951b07cc534c39d')
 
 build() {
   msg "Extracting DPKG package ..."

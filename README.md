@@ -6,7 +6,7 @@
     <img src="https://travis-ci.org/countstarlight/deepin-wine-tim-arch.svg?branch=master" alt="Build Status">
   </a>
   <a href="https://office.qq.com/download.html">
-    <img src="https://img.shields.io/badge/TIM-3.1.0.21789-blue.svg" alt="TIM Version">
+    <img src="https://img.shields.io/badge/TIM-3.2.0.21856-blue.svg" alt="TIM Version">
   </a>
   <a href="https://aur.archlinux.org/packages/deepin-wine-tim/">
     <img src="https://img.shields.io/aur/version/deepin-wine-tim.svg" alt="AUR Version">
@@ -27,6 +27,7 @@ Deepin 打包的 TIM 容器移植到 Archlinux，不依赖 `deepin-wine`，包�
     - [从AUR安装](#从aur安装)
     - [用安装包安装](#用安装包安装)
     - [本地打包安装](#本地打包安装)
+- [兼容性记录](#兼容性记录)
 - [切换到 `deepin-wine`](#切换到-deepin-wine)
     - [自动切换(推荐)](#自动切换推荐)
     - [手动切换](#手动切换)
@@ -61,6 +62,10 @@ Deepin 打包的 TIM 容器移植到 Archlinux，不依赖 `deepin-wine`，包�
 +[multilib]
 +Include = /etc/pacman.d/mirrorlist
 ```
+
+**注意：由于新版TIM可能需要 `wine` 还没有实现的一些win api，这会导致一些功能不可用，安装前先根据[兼容性记录](#兼容性记录)选择一个合适的版本**
+
+以下三种安装方式效果相同，选择一种即可
 
 ### 从AUR安装
 
@@ -109,6 +114,13 @@ md5sum -c *.md5
   改为修改后的安装路径，否则只有安装后第一次能够运行
 
 * 安装完可直接启动
+
+## 兼容性记录
+
+|     TIM     | wine |   兼容性   |   备注   | deepin-wine | 兼容性 | 备注 |
+| :---------: | :--: | :--------: | :------: | :---------: | :----: | :--: |
+| 3.2.0.21856 | 5.18 | **不支持** | 无法启动 |  2.18_24-3  |  支持  |      |
+| 3.1.0.21789 | 5.16 |    支持    |          |  2.18_24-3  |  支持  |      |
 
 ## 切换到 `deepin-wine`
 
@@ -239,6 +251,7 @@ env WINEPREFIX="$HOME/.deepinwine/Deepin-TIM" deepin-wine winecfg
 
 ## 更新日志
 
+* 2020-09-30 TIM-3.2.0.21856
 * 2020-08-12 TIM-3.1.0.21789
 * 2020-04-01 TIM-3.0.0.21315
 * 2019-09-21 TIM-2.3.2.21173
