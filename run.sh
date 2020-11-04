@@ -138,6 +138,9 @@ SwitchToDeepinWine()
 if [ -f "$WINEPREFIX/deepin" ]; then
 	WINE_CMD="deepin-wine"
 	if [[ -z "$(ps -e | grep -o gsd-xsettings)" ]] && [[ -z "$(ps -e | grep -o xsettingsd)" ]]; then
+		if [[ ! -f "$HOME/.xsettingsd" ]] && [[ ! -f "$HOME/.config/xsettingsd/xsettingsd.conf" ]] && [[ ! -f "/etc/xsettingsd/xsettingsd.conf" ]]; then
+			mkdir -p "$HOME/.config/xsettingsd" && touch "$HOME/.config/xsettingsd/xsettingsd.conf"
+		fi
 		/usr/bin/xsettingsd &
 	fi
 fi

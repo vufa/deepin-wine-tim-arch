@@ -39,7 +39,7 @@ Deepin 打包的 TIM 容器移植到 Archlinux，不依赖 `deepin-wine`，包�
     - [不能记住密码](#不能记住密码)
     - [网络连接状态改变后不能重连](#网络连接状态改变后不能重连)
     - [高分辨率屏幕支持](#高分辨率屏幕支持)
-    - [使用全局截图快捷键](#使用全局截图快捷键)
+    - [GNOME 桌面上的悬浮窗口问题](#gnome-桌面上的悬浮窗口问题)
     - [使用其他字体](#使用其他字体)
 - [感谢](#感谢)
 - [更新日志](#更新日志)
@@ -101,19 +101,15 @@ md5sum -c *.md5
  makepkg -si
 ```
 
-* 运行应用菜单中创建的 TIM 快捷方式，开始安装 TIM
+用上述三种安装方式之一安装完成后，运行应用菜单中创建的 TIM 快捷方式，首次运行会用 TIM 的安装包进行安装
 
-  **注意：安装TIM时不需要修改安装路径，如果修改默认路径，要对应修改 `deepin-wine-tim` 的启动脚本：**
+**注意：安装 TIM 时不需要修改安装路径，如果修改默认路径，要对应修改 `deepin-wine-tim` 的启动脚本(`/opt/deepinwine/apps/Deepin-TIM/run.sh`)：**
 
-  `/opt/deepinwine/apps/Deepin-TIM/run.sh`
+```bash
+env WINEPREFIX="$WINEPREFIX" WINEDEBUG=-msvcrt $WINE_CMD "c:\\Program Files\\Tencent\\TIM\\Bin\\TIM.exe" &
+```
+改为修改后的安装路径，否则只有安装后第一次能够运行
 
-  ```bash
-  env WINEPREFIX="$WINEPREFIX" WINEDEBUG=-msvcrt $WINE_CMD "c:\\Program Files\\Tencent\\TIM\\Bin\\TIM.exe" &
-  ```
-
-  改为修改后的安装路径，否则只有安装后第一次能够运行
-
-* 安装完可直接启动
 
 ## 兼容性记录
 
@@ -124,11 +120,11 @@ md5sum -c *.md5
 
 ## 切换到 `deepin-wine`
 
+> 根据 [deepin-wine-wechat-arch#15](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/15#issuecomment-515455845)，[deepin-wine-wechat-arch#27](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/27)，由 [@feileb](https://github.com/feileb), [@violetbobo](https://github.com/violetbobo), [@HE7086](https://github.com/HE7086)提供的方法
+
 原版 `wine` 在 [DDE(Deepin Desktop Environment)](https://www.deepin.org/dde/) 上，有托盘图标无法响应鼠标事件([deepin-wine-tim-arch#21](https://github.com/countstarlight/deepin-wine-tim-arch/issues/21))的问题，且原版 `wine` 尚不能实现保存登录密码等功能，可以选择切换到 `deepin-wine`。
 
 **注意：切换前先确保 `deepin-wine` 支持**
-
-根据 [deepin-wine-wechat-arch#15](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/15#issuecomment-515455845)，[deepin-wine-wechat-arch#27](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/27)，由 [@feileb](https://github.com/feileb), [@violetbobo](https://github.com/violetbobo), [@HE7086](https://github.com/HE7086)提供的方法：
 
 ### 自动切换(推荐)
 
@@ -160,9 +156,9 @@ yay -S deepin-wine
 
 #### 2. 对于非 GNOME 桌面(KDE, XFCE等)
 
-需要安装 `xsettingsd`：
+> 根据 [deepin-wine-wechat-arch#36](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/36#issuecomment-612001200)，由[Face-Smile](https://github.com/Face-Smile)提供的方法
 
-根据 [deepin-wine-wechat-arch#36](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/36#issuecomment-612001200)，由[Face-Smile](https://github.com/Face-Smile)提供的方法：
+需要安装 `xsettingsd`：
 
 ```bash
 sudo pacman -S xsettingsd
@@ -231,9 +227,11 @@ env WINEPREFIX="$HOME/.deepinwine/Deepin-TIM" winecfg
 env WINEPREFIX="$HOME/.deepinwine/Deepin-TIM" deepin-wine winecfg
 ```
 
-### 使用全局截图快捷键
+### GNOME 桌面上的悬浮窗口问题
 
-使用全局截图快捷键和解决Gnome上窗口化问题，参见[issue2](https://github.com/countstarlight/deepin-wine-tim-arch/issues/2)
+> 根据 [deepin-wine-tim-arch#2](https://github.com/countstarlight/deepin-wine-tim-arch/issues/2)，由[EricDracula](https://github.com/EricDracula)提供的方法
+
+安装 GNOME 插件: [TopIcons Plus](https://extensions.gnome.org/extension/1031/topicons/)
 
 ### 使用其他字体
 
@@ -251,13 +249,33 @@ env WINEPREFIX="$HOME/.deepinwine/Deepin-TIM" deepin-wine winecfg
 
 ## 更新日志
 
+<details open>
+<summary>2020</summary>
+
 * 2020-09-30 TIM-3.2.0.21856
 * 2020-08-12 TIM-3.1.0.21789
 * 2020-04-01 TIM-3.0.0.21315
+
+</details>
+<details>
+<summary>2019</summary>
+
 * 2019-09-21 TIM-2.3.2.21173
 * 2019-03-06 TIM-2.3.2.21158
 * 2019-02-05 TIM-2.3.1_3
+
+</details>
+<details>
+<summary>2018</summary>
+
 * 2018-02-23 TIM-2.1.5
+
+</details>
+<details>
+<summary>2017</summary>
+
 * 2017-12-23 TIM-2.1.0
 * 2017-11-28 修复音频功能（麦克风录音和播放语音消息）
 * 2017-11-21 TIM-2.0.0
+
+</details>
