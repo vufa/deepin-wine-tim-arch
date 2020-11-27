@@ -120,8 +120,14 @@ SwitchToDeepinWine()
 	if [ "$XDG_CURRENT_DESKTOP" = "Deepin" ]; then
 		DEEPIN_WINE_DEPENDS="${DEEPIN_WINE_DEPENDS} lib32-freetype2-infinality-ultimate"
 	fi
-	msg 0 "Installing dependencies: ${DEEPIN_WINE_DEPENDS} ..."
-	$PACKAGE_MANAGER -S ${DEEPIN_WINE_DEPENDS} --needed
+	for p in ${DEEPIN_WINE_DEPENDS}; do
+		if pacman -Qs $p > /dev/null ; then
+			msg 0 "$p is installed, skip ..."
+		else
+			msg 0 "Installing dependency: $p ..."
+			$PACKAGE_MANAGER -S $p
+		fi
+	done
 	msg 0 "Redeploying app ..."
 	if [ -d "$WINEPREFIX" ]; then
 		RemoveApp
@@ -132,6 +138,7 @@ SwitchToDeepinWine()
 	msg 0 "Creating flag file '$WINEPREFIX/deepin' ..."
 	touch -f $WINEPREFIX/deepin
 	msg 0 "Done."
+	exit 0
 }
 
 # Init

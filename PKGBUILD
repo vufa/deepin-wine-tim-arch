@@ -11,14 +11,14 @@ license=('custom')
 depends=('p7zip' 'wine' 'wine-mono' 'wine-gecko' 'xorg-xwininfo' 'wqy-microhei' 'lib32-alsa-lib' 'lib32-alsa-plugins' 'lib32-libpulse' 'lib32-openal' 'lib32-mpg123' 'lib32-gnutls')
 conflicts=('wine-tim' 'deepin.com.qq.office' 'deepin-tim-for-arch')
 install="deepin-wine-tim.install"
-_mirror="https://ftp.sjtu.edu.cn/deepin"
+_mirror="http://packages.deepin.com/deepin"
 source=("$_mirror/pool/non-free/d/deepin.com.qq.office/deepin.com.qq.office_${deepintimver}_i386.deb"
   "https://dldir1.qq.com/qqfile/qq/PCTIM/TIM3.2.0/TIM${pkgver}.exe"
   "run.sh"
   "reg.patch")
 md5sums=('d5c37cb4f960e13111ce24dbc0dd2d58'
   '534c33e25dfa6360f710e5df4f3da1dd'
-  '2f01b7e2e707d6f246ffda76c2d11e53'
+  'dbb4a2773f41c3e7ed56fea650884560'
   'd049e1171da0dc82c951b07cc534c39d')
 
 build() {

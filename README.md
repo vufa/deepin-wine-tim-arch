@@ -132,7 +132,7 @@ env WINEPREFIX="$WINEPREFIX" WINEDEBUG=-msvcrt $WINE_CMD "c:\\Program Files\\Ten
 /opt/deepinwine/apps/Deepin-TIM/run.sh -d
 ```
 
-这会安装需要的依赖，移除已安装的TIM目录并回退对注册表文件的修改
+这会安装需要的依赖，移除已安装的 TIM 目录并回退对注册表文件的修改
 
 切换回 `wine`：
 

@@ -21,13 +21,13 @@ pkgbase = deepin-wine-tim
 	conflicts = wine-tim
 	conflicts = deepin.com.qq.office
 	conflicts = deepin-tim-for-arch
-	source = https://ftp.sjtu.edu.cn/deepin/pool/non-free/d/deepin.com.qq.office/deepin.com.qq.office_2.0.0deepin4_i386.deb
+	source = http://packages.deepin.com/deepin/pool/non-free/d/deepin.com.qq.office/deepin.com.qq.office_2.0.0deepin4_i386.deb
 	source = https://dldir1.qq.com/qqfile/qq/PCTIM/TIM3.2.0/TIM3.2.0.21856.exe
 	source = run.sh
 	source = reg.patch
 	md5sums = d5c37cb4f960e13111ce24dbc0dd2d58
 	md5sums = 534c33e25dfa6360f710e5df4f3da1dd
-	md5sums = 2f01b7e2e707d6f246ffda76c2d11e53
+	md5sums = dbb4a2773f41c3e7ed56fea650884560
 	md5sums = d049e1171da0dc82c951b07cc534c39d
 
 pkgname = deepin-wine-tim
