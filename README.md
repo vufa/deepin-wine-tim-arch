@@ -6,7 +6,7 @@
     <img src="https://travis-ci.org/countstarlight/deepin-wine-tim-arch.svg?branch=master" alt="Build Status">
   </a>
   <a href="https://office.qq.com/download.html">
-    <img src="https://img.shields.io/badge/TIM-3.2.0.21856-blue.svg" alt="TIM Version">
+    <img src="https://img.shields.io/badge/TIM-3.3.0.22020-blue.svg" alt="TIM Version">
   </a>
   <a href="https://aur.archlinux.org/packages/deepin-wine-tim/">
     <img src="https://img.shields.io/aur/version/deepin-wine-tim.svg" alt="AUR Version">
@@ -19,7 +19,7 @@
   </a>
 </p>
 
-Deepin 打包的 TIM 容器移植到 Archlinux，不依赖 `deepin-wine`，包含定制的注册表配置，TIM 安装包替换为官方最新
+Deepin 打包的 QQ 容器移植到 Archlinux，QQ 环境替换为 TIM，不依赖 `deepin-wine`，包含定制的注册表配置，TIM 安装包为官方最新
 
 <!-- TOC -->
 
@@ -27,14 +27,12 @@ Deepin 打包的 TIM 容器移植到 Archlinux，不依赖 `deepin-wine`，包�
     - [从AUR安装](#从aur安装)
     - [用安装包安装](#用安装包安装)
     - [本地打包安装](#本地打包安装)
+- [设置](#设置)
 - [兼容性记录](#兼容性记录)
 - [切换到 `deepin-wine`](#切换到-deepin-wine)
     - [自动切换(推荐)](#自动切换推荐)
-    - [手动切换](#手动切换)
-        - [1. 安装 `deepin-wine`](#1-安装-deepin-wine)
-        - [2. 对于非 GNOME 桌面(KDE, XFCE等)](#2-对于非-gnome-桌面kde-xfce等)
-        - [3. 删除已安装的TIM目录](#3-删除已安装的tim目录)
-        - [4. 修复 `deepin-wine` 字体渲染发虚](#4-修复-deepin-wine-字体渲染发虚)
+    - [从 `deepin-wine 2.x` 迁移](#从-deepin-wine-2x-迁移)
+- [卸载](#卸载)
 - [常见问题及解决](#常见问题及解决)
     - [不能记住密码](#不能记住密码)
     - [网络连接状态改变后不能重连](#网络连接状态改变后不能重连)
@@ -69,7 +67,7 @@ Deepin 打包的 TIM 容器移植到 Archlinux，不依赖 `deepin-wine`，包�
 
 ### 从AUR安装
 
-已添加到 AUR [deepin-wine-tim](https://aur.archlinux.org/packages/deepin-wine-tim/)，使用 `yay` 安装（如未安装 `yay`，请先 `pacman -S yay` 进行安装）：
+已添加到 AUR [deepin-wine-tim](https://aur.archlinux.org/packages/deepin-wine-tim/)，使用 `yay` 安装：
 
 ```shell
 yay -S deepin-wine-tim
@@ -77,7 +75,7 @@ yay -S deepin-wine-tim
 
 ### 用安装包安装
 
-> 由 [Travis CI](https://travis-ci.org/countstarlight/deepin-wine-tim-arch) 在 Docker 容器 [mikkeloscar/arch-travis](https://hub.docker.com/r/mikkeloscar/arch-travis) 中自动构建的 ArchLinux 安装包
+> 由 [Travis CI](https://travis-ci.org/countstarlight/deepin-wine-tim-arch) 在 Docker 容器 [countstarlight/arch-travis](https://hub.docker.com/r/countstarlight/arch-travis) 中自动构建的 ArchLinux 安装包
 
 在 [GitHub Release](https://github.com/countstarlight/deepin-wine-tim-arch/releases) 页面下载后缀为 `.pkg.tar.xz` 或 `.pkg.tar.zst` 的安装包，使用`pacman`安装：
 
@@ -103,20 +101,38 @@ md5sum -c *.md5
 
 用上述三种安装方式之一安装完成后，运行应用菜单中创建的 TIM 快捷方式，首次运行会用 TIM 的安装包进行安装
 
-**注意：安装 TIM 时不需要修改安装路径，如果修改默认路径，要对应修改 `deepin-wine-tim` 的启动脚本(`/opt/deepinwine/apps/Deepin-TIM/run.sh`)：**
+**注意：安装 TIM 时不需要修改安装路径，如果修改默认路径，要对应修改 `deepin-wine-tim` 的启动脚本(`/opt/apps/com.qq.office.deepin/files/run.sh`)：**
 
 ```bash
-env WINEPREFIX="$WINEPREFIX" WINEDEBUG=-msvcrt $WINE_CMD "c:\\Program Files\\Tencent\\TIM\\Bin\\TIM.exe" &
+EXEC_PATH="c:/Program Files/Tencent/TIM/Bin/TIM.exe"
 ```
 改为修改后的安装路径，否则只有安装后第一次能够运行
 
+**NOTE: 前几次运行时可能会提示 "qq安全组件异常"，等一会再运行或重启一下系统**
+
+## 设置
+
+> dpi，目录映射等可以在 `winecfg` 进行设置
+
+如果使用默认的 `wine`，打开 `winecfg` 的命令为：
+
+```bash
+env WINEPREFIX="$HOME/.deepinwine/Deepin-TIM" winecfg
+```
+
+如果已经[切换到 `deepin-wine`](#切换到-deepin-wine)，打开 `winecfg` 的命令为：
+
+```bash
+env WINEPREFIX="$HOME/.deepinwine/Deepin-TIM" deepin-wine5 winecfg
+```
 
 ## 兼容性记录
 
-|     TIM     | wine |   兼容性   |   备注   | deepin-wine | 兼容性 | 备注 |
-| :---------: | :--: | :--------: | :------: | :---------: | :----: | :--: |
-| 3.2.0.21856 | 5.18 | **不支持** | 无法启动 |  2.18_24-3  |  支持  |      |
-| 3.1.0.21789 | 5.16 |    支持    |          |  2.18_24-3  |  支持  |      |
+|     TIM     | wine |   兼容性   |             备注             | deepin-wine | 兼容性 | 备注 |
+| :---------: | :--: | :--------: | :--------------------------: | :---------: | :----: | :--: |
+| 3.3.0.22020 | 6.1  |    部分    | 部分字体显示为方框且性能较差 |  5.0.16-1   |  支持  |      |
+| 3.2.0.21856 | 5.18 | **不支持** |           无法启动           |  2.18_24-3  |  支持  |      |
+| 3.1.0.21789 | 5.16 |    支持    |                              |  2.18_24-3  |  支持  |      |
 
 ## 切换到 `deepin-wine`
 
@@ -129,77 +145,56 @@ env WINEPREFIX="$WINEPREFIX" WINEDEBUG=-msvcrt $WINE_CMD "c:\\Program Files\\Ten
 ### 自动切换(推荐)
 
 ```bash
-/opt/deepinwine/apps/Deepin-TIM/run.sh -d
+/opt/apps/com.qq.office.deepin/files/run.sh -d
 ```
 
 这会安装需要的依赖，移除已安装的 TIM 目录并回退对注册表文件的修改
 
-切换回 `wine`：
+> 从 `v3.3.0.22020-1` 开始，该命令会切换到 AUR 仓库：[deepin-wine5](https://aur.archlinux.org/packages/deepin-wine5)
+
+
+如果想切换回 `wine`：
 
 ```bash
-rm ~/.deepinwine/Deepin-TIM/deepin
+rm $HOME/.deepinwine/Deepin-TIM/deepin
 ```
 
 如果要卸载自动安装的依赖：
 
 ```bash
-sudo pacman -Rns deepin-wine xsettingsd lib32-freetype2-infinality-ultimate
+sudo pacman -Rns deepin-wine5
 ```
 
-### 手动切换
+### 从 `deepin-wine 2.x` 迁移
 
-#### 1. 安装 `deepin-wine`
+若之前使用的是 `deepin-wine 2.x`，更新到 `deepin-wine-tim v3.3.0.22020-1` 及之后的版本会自动切换回 `wine`，运行命令：
 
 ```bash
-yay -S deepin-wine
+/opt/apps/com.qq.office.deepin/files/run.sh -d
 ```
 
-#### 2. 对于非 GNOME 桌面(KDE, XFCE等)
+就会自动安装并切换到 `deepin-wine5`
 
-> 根据 [deepin-wine-wechat-arch#36](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/36#issuecomment-612001200)，由[Face-Smile](https://github.com/Face-Smile)提供的方法
-
-需要安装 `xsettingsd`：
+若此时没有其他应用在使用旧版 `deepin-wine`，就可以放心的卸载旧版 `deepin-wine` 及其依赖：
 
 ```bash
-sudo pacman -S xsettingsd
-```
-
-修改 `/opt/deepinwine/apps/Deepin-TIM/run.sh`：
-
-```diff
--WINE_CMD="wine"
-+WINE_CMD="deepin-wine"
-
- RunApp()
- {
-+    if [[ -z "$(ps -e | grep -o xsettingsd)" ]]
-+    then
-+        /usr/bin/xsettingsd &
-+    fi
-        if [ -d "$WINEPREFIX" ]; then
-                UpdateApp
-        else
-```
-
-**注意：对 `/opt/deepinwine/apps/Deepin-TIM/run.sh` 的修改会在 `deepin-wine-tim` 更新或重装时被覆盖，可以单独拷贝一份作为启动脚本**
-
-#### 3. 删除已安装的TIM目录
-
-```bash
-rm -rf ~/.deepinwine/Deepin-TIM
-```
-
-#### 4. 修复 `deepin-wine` 字体渲染发虚
-
-kde桌面参考：[deepin-wine-wechat-arch#36](https://github.com/countstarlight/deepin-wine-wechat-arch/issues/36)
-
-deepin 桌面：
-
-```bash
-yay -S lib32-freetype2-infinality-ultimate
+sudo pacman -S lib32-freetype2 #用原版替换lib32-freetype2-infinality-ultimate
+sudo pacman -Rns deepin-wine xsettingsd
 ```
 
 **注意：切换到 `deepin-wine` 后，对 `wine` 的修改，如更改dpi，都改为对 `deepin-wine` 的修改**
+
+## 卸载
+
+无论用何种方式安装，卸载都是：
+
+```bash
+sudo pacman -Rns deepin-wine-tim
+```
+
+卸载的同时会删除用户目录下的整个 `WINEPREFIX` 环境，路径为：`~/.deepinwine/Deepin-TIM`
+
+TIM在本地保存的数据不会被删除，如保存在用户文档下的数据(默认：`~/Documents/Tencent Files`)
 
 ## 常见问题及解决
 
@@ -213,19 +208,7 @@ yay -S lib32-freetype2-infinality-ultimate
 
 ### 高分辨率屏幕支持
 
-在 `winecfg` 的Graphics选项卡中修改dpi，如 修改为`192`
-
-对于 `wine`：
-
-```bash
-env WINEPREFIX="$HOME/.deepinwine/Deepin-TIM" winecfg
-```
-
-对于 `deepin-wine` ：
-
-```bash
-env WINEPREFIX="$HOME/.deepinwine/Deepin-TIM" deepin-wine winecfg
-```
+参照[设置](#设置)打开 `winecfg` ，在选项卡 `Graphics` 中修改dpi，如 修改为`192`
 
 ### GNOME 桌面上的悬浮窗口问题
 
@@ -250,6 +233,12 @@ env WINEPREFIX="$HOME/.deepinwine/Deepin-TIM" deepin-wine winecfg
 ## 更新日志
 
 <details open>
+<summary>2021</summary>
+
+* 2021-02-03 TIM-3.3.0.22020 com.qq.im.deepin_9.3.2deepin14
+
+</details>
+<details>
 <summary>2020</summary>
 
 * 2020-09-30 TIM-3.2.0.21856

@@ -7,94 +7,47 @@
 
 #               Codist <countstarlight@gmail.com>
 
-WINEPREFIX="$HOME/.deepinwine/Deepin-TIM"
-APPDIR="/opt/deepinwine/apps/Deepin-TIM"
-APPVER="3.2.0.21856"
-APPTAR="files.7z"
-PACKAGENAME="com.qq.tim"
-WINE_CMD="wine"
+version_gt() { test "$(echo "$@" | tr " " "\n" | sort -V | head -n 1)" != "$1"; }
 
-HelpApp()
+extract_archive()
 {
-	echo " Extra Commands:"
-	echo " -r/--reset     Reset app to fix errors"
-	echo " -e/--remove    Remove deployed app files"
-	echo " -d/--deepin    Switch to 'deepin-wine'"
-	echo " -h/--help      Show program help info"
-}
-CallApp()
-{
-	if [ ! -f "$WINEPREFIX/reinstalled" ]
-	then
-		touch $WINEPREFIX/reinstalled
-		env WINEPREFIX="$WINEPREFIX" $WINE_CMD $APPDIR/TIM$APPVER.exe
-	else
-        #disable Tencent MiniBrowser
-        #_DeleteRegistry "HKCU\\Software\\Tencent\\MiniBrowser"
-
-        #Support use native file dialog
-        export ATTACH_FILE_DIALOG=1
-
-        env WINEPREFIX="$WINEPREFIX" WINEDEBUG=-msvcrt $WINE_CMD "c:\\Program Files\\Tencent\\TIM\\Bin\\TIM.exe" &
-	fi
-}
-ExtractApp()
-{
-	mkdir -p "$1"
-	7z x "$APPDIR/$APPTAR" -o"$1"
-	mv "$1/drive_c/users/@current_user@" "$1/drive_c/users/$USER"
-	sed -i "s#@current_user@#$USER#" $1/*.reg
-}
-DeployApp()
-{
-	ExtractApp "$WINEPREFIX"
-	echo "$APPVER" > "$WINEPREFIX/PACKAGE_VERSION"
-}
-RemoveApp()
-{
-	rm -rf "$WINEPREFIX"
-}
-ResetApp()
-{
-	echo "Reset $PACKAGENAME....."
-	read -p "*	Are you sure?(Y/N)" ANSWER
-	if [ "$ANSWER" = "Y" -o "$ANSWER" = "y" -o -z "$ANSWER" ]; then
-		EvacuateApp
-		DeployApp
-		CallApp
-	fi
-}
-UpdateApp()
-{
-	if [ -f "$WINEPREFIX/PACKAGE_VERSION" ] && [ "$(cat "$WINEPREFIX/PACKAGE_VERSION")" = "$APPVER" ]; then
-		return
-	fi
-	if [ -d "${WINEPREFIX}.tmpdir" ]; then
-		rm -rf "${WINEPREFIX}.tmpdir"
-	fi
-	ExtractApp "${WINEPREFIX}.tmpdir"
-	/opt/deepinwine/tools/updater -s "${WINEPREFIX}.tmpdir" -c "${WINEPREFIX}" -v
-	rm -rf "${WINEPREFIX}.tmpdir"
-	echo "$APPVER" > "$WINEPREFIX/PACKAGE_VERSION"
-}
-RunApp()
-{
- 	if [ -d "$WINEPREFIX" ]; then
- 		UpdateApp
- 	else
- 		DeployApp
- 	fi
- 	CallApp
-}
-
-CreateBottle()
-{
-    if [ -d "$WINEPREFIX" ]; then
-        UpdateApp
-    else
-        DeployApp
+    archive=$1
+    version_file=$2
+    dest_dir=$3
+    if [ -f "$archive" ] && [ -n "$dest_dir" ] && [ "$dest_dir" != "." ];then
+        archive_version=`cat $version_file`
+        if [ -d "$dest_dir" ];then
+            if [ -f "$dest_dir/VERSION" ];then
+                dest_version=`cat $dest_dir/VERSION`
+                if version_gt "$archive_version" "$dest_version" || [ -z "$dest_version" ];then
+                    7z x "$archive" -o/"$dest_dir" -aoa
+                    echo "$archive_version" > "$dest_dir/VERSION"
+                fi
+            fi
+        else
+            mkdir -p $dest_dir
+            7z x "$archive" -o/"$dest_dir" -aoa
+            echo "$archive_version" > "$dest_dir/VERSION"
+        fi
     fi
 }
+
+BOTTLENAME="Deepin-TIM"
+APPVER="9.3.2deepin14"
+WINEPREFIX="$HOME/.deepinwine/$BOTTLENAME"
+TIM_VER="3.3.0.22020"
+EXEC_PATH="c:/Program Files/Tencent/TIM/Bin/TIM.exe"
+START_SHELL_PATH="$HOME/.deepinwine/deepin-wine-helper/run_v3.sh"
+TIM_INSTALLER_PATH="c:/Program Files/Tencent/TIM$TIM_VER.exe"
+export MIME_TYPE=""
+export DEB_PACKAGE_NAME="com.qq.office.deepin"
+#export APPRUN_CMD="wine"
+export PATCH_LOADER_ENV=""
+export FILEDLG_PLUGIN="/opt/apps/$DEB_PACKAGE_NAME/files/gtkGetFileNameDlg"
+
+export SPECIFY_SHELL_DIR=`dirname $START_SHELL_PATH`
+
+ARCHIVE_FILE_DIR="/opt/apps/$DEB_PACKAGE_NAME/files"
 
 msg()
 {
@@ -104,81 +57,86 @@ msg()
 
 SwitchToDeepinWine()
 {
-	PACKAGE_MANAGER="yay"
-	DEEPIN_WINE_DEPENDS="deepin-wine"
-	if ! [ -x "$(command -v yay)" ]; then
-		if ! [ -x "$(command -v yaourt)" ]; then
-			msg 1 "Need to install 'yay' or 'yaourt' first." >&2
-			exit 1
-		else
-			$PACKAGE_MANAGER="yaourt"
-		fi
-	fi
-	if [[ -z "$(ps -e | grep -o gsd-xsettings)" ]]; then
-		DEEPIN_WINE_DEPENDS="${DEEPIN_WINE_DEPENDS} xsettingsd"
-	fi
-	if [ "$XDG_CURRENT_DESKTOP" = "Deepin" ]; then
-		DEEPIN_WINE_DEPENDS="${DEEPIN_WINE_DEPENDS} lib32-freetype2-infinality-ultimate"
-	fi
-	for p in ${DEEPIN_WINE_DEPENDS}; do
-		if pacman -Qs $p > /dev/null ; then
-			msg 0 "$p is installed, skip ..."
-		else
-			msg 0 "Installing dependency: $p ..."
-			$PACKAGE_MANAGER -S $p
-		fi
-	done
-	msg 0 "Redeploying app ..."
-	if [ -d "$WINEPREFIX" ]; then
-		RemoveApp
-	fi
-	DeployApp
-	msg 0 "Reversing the patch ..."
-	patch -p1 -R -d  ${WINEPREFIX} < $APPDIR/reg.patch
-	msg 0 "Creating flag file '$WINEPREFIX/deepin' ..."
-	touch -f $WINEPREFIX/deepin
-	msg 0 "Done."
-	exit 0
+    PACKAGE_MANAGER="yay"
+    DEEPIN_WINE_DEPENDS="deepin-wine5"
+    if ! [ -x "$(command -v yay)" ]; then
+        if ! [ -x "$(command -v yaourt)" ]; then
+            msg 1 "Need to install 'yay' or 'yaourt' first." >&2
+            exit 1
+        else
+            $PACKAGE_MANAGER="yaourt"
+        fi
+    fi
+    for p in ${DEEPIN_WINE_DEPENDS}; do
+        if pacman -Qs $p > /dev/null ; then
+            msg 0 "$p is installed, skip ..."
+        else
+            msg 0 "Installing dependency: $p ..."
+            $PACKAGE_MANAGER -S $p
+        fi
+    done
+    msg 0 "Redeploying app ..."
+    extract_archive "$ARCHIVE_FILE_DIR/helper_archive.7z" "$ARCHIVE_FILE_DIR/helper_archive.md5sum" "$SPECIFY_SHELL_DIR"
+    $START_SHELL_PATH $BOTTLENAME $APPVER "$EXEC_PATH" -r
+    #msg 0 "Reversing the patch ..."
+    #patch -p1 -R -d  ${WINEPREFIX} < $ARCHIVE_FILE_DIR/reg.patch
+    echo "5" > $WINEPREFIX/deepin
+    rm -f $WINEPREFIX/reinstalled
+    msg 0 "Done."
+    exit 0
 }
 
-# Init
+Run()
+{
+    extract_archive "$ARCHIVE_FILE_DIR/helper_archive.7z" "$ARCHIVE_FILE_DIR/helper_archive.md5sum" "$SPECIFY_SHELL_DIR"
+
+    if [ -n "$PATCH_LOADER_ENV" ] && [ -n "$EXEC_PATH" ];then
+        export $PATCH_LOADER_ENV
+    fi
+
+    if [ -n "$EXEC_PATH" ];then
+        if [ ! -f "$WINEPREFIX/reinstalled" ];then
+            touch $WINEPREFIX/reinstalled
+            env LC_ALL=zh_CN.UTF-8 WINEDLLOVERRIDES="winemenubuilder.exe=d" $START_SHELL_PATH $BOTTLENAME $APPVER "$TIM_INSTALLER_PATH" "$@"
+        else
+            env LC_ALL=zh_CN.UTF-8 $START_SHELL_PATH $BOTTLENAME $APPVER "$EXEC_PATH" "$@"
+        fi
+    else
+        env LC_ALL=zh_CN.UTF-8 $START_SHELL_PATH $BOTTLENAME $APPVER "uninstaller.exe" "$@"
+    fi
+}
+
+HelpApp()
+{
+	echo " Extra Commands:"
+	echo " -d/--deepin    Switch to 'deepin-wine'"
+	echo " -h/--help      Show program help info"
+}
+
 if [ -f "$WINEPREFIX/deepin" ]; then
-	WINE_CMD="deepin-wine"
-	if [[ -z "$(ps -e | grep -o gsd-xsettings)" ]] && [[ -z "$(ps -e | grep -o xsettingsd)" ]]; then
-		if [[ ! -f "$HOME/.xsettingsd" ]] && [[ ! -f "$HOME/.config/xsettingsd/xsettingsd.conf" ]] && [[ ! -f "/etc/xsettingsd/xsettingsd.conf" ]]; then
-			mkdir -p "$HOME/.config/xsettingsd" && touch "$HOME/.config/xsettingsd/xsettingsd.conf"
-		fi
-		/usr/bin/xsettingsd &
-	fi
+    if [ "$(cat $WINEPREFIX/deepin)" = "5" ]; then
+        export APPRUN_CMD="deepin-wine5"
+    else
+        rm $WINEPREFIX/deepin
+        export APPRUN_CMD="wine"
+    fi
+else
+    export APPRUN_CMD="wine"
 fi
 
 if [ -z $1 ]; then
-	RunApp
+	Run "$@"
 	exit 0
 fi
 case $1 in
-	"-r" | "--reset")
-		ResetApp
-		;;
-	"-c" | "--create")
-		CreateBottle
-		;;
-	"-e" | "--remove")
-		RemoveApp
-		;;
 	"-d" | "--deepin")
 		SwitchToDeepinWine
-		;;
-	"-u" | "--uri")
-		RunApp $2
 		;;
 	"-h" | "--help")
 		HelpApp
 		;;
 	*)
-		echo "Invalid option: $1"
-		echo "Use -h|--help to get help"
-		exit 1
+		Run "$@"
 		;;
 esac
 exit 0
