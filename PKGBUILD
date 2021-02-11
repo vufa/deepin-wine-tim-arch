@@ -2,10 +2,10 @@
 
 pkgname=deepin-wine-tim
 pkgver=3.3.0.22020
-debpkgver=9.3.2deepin14
+debpkgver=9.3.2deepin20
 debpkgname="com.qq.im.deepin"
 timpkgname="com.qq.office.deepin"
-pkgrel=1
+pkgrel=2
 pkgdesc="Tencent TIM on Deepin Wine5(${timpkgname}) For Archlinux"
 arch=("x86_64")
 url="https://tim.qq.com/"
@@ -18,7 +18,7 @@ source=("$_mirror/appstore/pool/appstore/c/${debpkgname}/${debpkgname}_${debpkgv
   "https://dldir1.qq.com/qqfile/qq/PCTIM/TIM3.3.0/TIM${pkgver}.exe"
   "run.sh"
   "share.7z")
-md5sums=('e12c4b26c791ca32cdc96e5441341148'
+md5sums=('5fdc20e614d945bd2ba5251420872479'
   '07fe0f065594b90673ab28d7388017d4'
   '3dcb24166e65ebbba4ba9a535402b34a'
   '479ae2a04a9c5dcc08c67c7b1395a944')
@@ -52,7 +52,7 @@ package() {
   install -d "${pkgdir}/opt/apps/${timpkgname}/files"
   install -m644 "${srcdir}/files.7z" "${pkgdir}/opt/apps/${timpkgname}/files/"
   cp ${srcdir}/dpkgdir/opt/apps/${debpkgname}/files/helper_archive* "${pkgdir}/opt/apps/${timpkgname}/files/"
-  install -m755 "${srcdir}/dpkgdir/opt/apps/${debpkgname}/files/gtkGetFileNameDlg" "${pkgdir}/opt/apps/${timpkgname}/files/"
+  #install -m755 "${srcdir}/dpkgdir/opt/apps/${debpkgname}/files/gtkGetFileNameDlg" "${pkgdir}/opt/apps/${timpkgname}/files/"
   md5sum "${srcdir}/files.7z" | awk '{ print $1 }' > "${pkgdir}/opt/apps/${timpkgname}/files/files.md5sum"
   install -m755 "${srcdir}/run.sh" "${pkgdir}/opt/apps/${timpkgname}/files/"
 }
