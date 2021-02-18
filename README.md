@@ -112,18 +112,10 @@ EXEC_PATH="c:/Program Files/Tencent/TIM/Bin/TIM.exe"
 
 ## 设置
 
-> dpi，目录映射等可以在 `winecfg` 进行设置
-
-如果使用默认的 `wine`，打开 `winecfg` 的命令为：
+dpi，目录映射等可以在 `winecfg` 进行设置，打开 `winecfg` 的命令为：
 
 ```bash
-env WINEPREFIX="$HOME/.deepinwine/Deepin-TIM" winecfg
-```
-
-如果已经[切换到 `deepin-wine`](#切换到-deepin-wine)，打开 `winecfg` 的命令为：
-
-```bash
-env WINEPREFIX="$HOME/.deepinwine/Deepin-TIM" deepin-wine5 winecfg
+/opt/apps/com.qq.office.deepin/files/run.sh winecfg
 ```
 
 ## 兼容性记录
@@ -235,6 +227,7 @@ TIM在本地保存的数据不会被删除，如保存在用户文档下的数�
 <details open>
 <summary>2021</summary>
 
+* 2021-02-11 TIM-3.3.0.22020 com.qq.im.deepin_9.3.2deepin20
 * 2021-02-03 TIM-3.3.0.22020 com.qq.im.deepin_9.3.2deepin14
 
 </details>

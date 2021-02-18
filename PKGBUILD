@@ -20,7 +20,7 @@ source=("$_mirror/appstore/pool/appstore/c/${debpkgname}/${debpkgname}_${debpkgv
   "share.7z")
 md5sums=('5fdc20e614d945bd2ba5251420872479'
   '07fe0f065594b90673ab28d7388017d4'
-  '3dcb24166e65ebbba4ba9a535402b34a'
+  '1a13ad93f5233047adb3228ceed7d620'
   '479ae2a04a9c5dcc08c67c7b1395a944')
 
 build() {

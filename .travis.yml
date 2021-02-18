@@ -1,4 +1,6 @@
-sudo: required
+arch: amd64
+os: linux
+dist: focal
 
 services:
 - docker
@@ -24,13 +26,12 @@ archlinux:
   - "./gen.sh -m"
 
 script:
-- "curl -s https://raw.githubusercontent.com/mikkeloscar/arch-travis/master/arch-travis.sh | bash"
+- "curl -s https://raw.githubusercontent.com/countstarlight/arch-travis/master/arch-travis.sh | bash"
 
 deploy:
   provider: releases
-  skip_cleanup: true
   overwrite: true
-  api_key: $GH_TOKEN
+  token: $GH_TOKEN
   file_glob: true
   file:
     - "deepin-wine-tim*.pkg*"
