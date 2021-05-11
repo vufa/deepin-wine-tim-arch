@@ -33,9 +33,9 @@ extract_archive()
 }
 
 BOTTLENAME="Deepin-TIM"
-APPVER="9.3.2deepin14"
+APPVER="9.3.2deepin20"
 WINEPREFIX="$HOME/.deepinwine/$BOTTLENAME"
-TIM_VER="3.3.0.22020"
+TIM_VER="3.3.5.22018"
 EXEC_PATH="c:/Program Files/Tencent/TIM/Bin/TIM.exe"
 START_SHELL_PATH="$HOME/.deepinwine/deepin-wine-helper/run_v3.sh"
 TIM_INSTALLER_PATH="c:/Program Files/Tencent/TIM$TIM_VER.exe"
@@ -78,8 +78,6 @@ SwitchToDeepinWine()
     msg 0 "Redeploying app ..."
     extract_archive "$ARCHIVE_FILE_DIR/helper_archive.7z" "$ARCHIVE_FILE_DIR/helper_archive.md5sum" "$SPECIFY_SHELL_DIR"
     $START_SHELL_PATH $BOTTLENAME $APPVER "$EXEC_PATH" -r
-    #msg 0 "Reversing the patch ..."
-    #patch -p1 -R -d  ${WINEPREFIX} < $ARCHIVE_FILE_DIR/reg.patch
     echo "5" > $WINEPREFIX/deepin
     rm -f $WINEPREFIX/reinstalled
     msg 0 "Done."
@@ -107,6 +105,9 @@ Run()
         if [ ! -f "$WINEPREFIX/reinstalled" ];then
             touch $WINEPREFIX/reinstalled
             env LC_ALL=zh_CN.UTF-8 WINEDLLOVERRIDES="winemenubuilder.exe=d" $START_SHELL_PATH $BOTTLENAME $APPVER "$TIM_INSTALLER_PATH" "$@"
+            if [ $APPRUN_CMD = "deepin-wine5" ]; then
+                echo "5" > $WINEPREFIX/deepin
+            fi
         else
             env LC_ALL=zh_CN.UTF-8 $START_SHELL_PATH $BOTTLENAME $APPVER "$EXEC_PATH" "$@"
         fi

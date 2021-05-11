@@ -12,7 +12,7 @@ archlinux:
   - p7zip
   - wine
   - wine-mono
-  - wine_gecko
+  - wine-gecko
   - xorg-xwininfo
   - wqy-microhei
   - lib32-alsa-lib
@@ -30,6 +30,7 @@ script:
 
 deploy:
   provider: releases
+  skip_cleanup: true
   overwrite: true
   token: $GH_TOKEN
   file_glob: true
