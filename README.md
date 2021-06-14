@@ -2,8 +2,8 @@
 ========
 
 <p align="center">
-  <a href="https://travis-ci.org/countstarlight/deepin-wine-tim-arch">
-    <img src="https://img.shields.io/travis/countstarlight/deepin-wine-tim-arch?&logo=travis&style=flat-square" alt="Build Status">
+  <a href="https://github.com/countstarlight/deepin-wine-tim-arch/actions">
+    <img src="https://img.shields.io/github/workflow/status/countstarlight/deepin-wine-tim-arch/CI/action?logo=github&style=flat-square" alt="Build Status">
   </a>
   <a href="https://office.qq.com/download.html">
     <img src="https://img.shields.io/badge/TIM-3.3.5.22018-blue?style=flat-square" alt="TIM Version">
@@ -75,7 +75,7 @@ yay -S deepin-wine-tim
 
 ### 用安装包安装
 
-> 由 [Travis CI](https://travis-ci.org/countstarlight/deepin-wine-tim-arch) 在 Docker 容器 [countstarlight/arch-travis](https://hub.docker.com/r/countstarlight/arch-travis) 中自动构建的 ArchLinux 安装包
+> 由 [GitHub Action](https://github.com/countstarlight/deepin-wine-tim-arch/actions) 在 Docker 容器 [countstarlight/makepkg](https://hub.docker.com/repository/docker/countstarlight/makepkg) 中自动构建的 ArchLinux 安装包
 
 在 [GitHub Release](https://github.com/countstarlight/deepin-wine-tim-arch/releases) 页面下载后缀为 `.pkg.tar.xz` 或 `.pkg.tar.zst` 的安装包，使用`pacman`安装：
 
