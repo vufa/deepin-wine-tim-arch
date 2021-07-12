@@ -35,7 +35,7 @@ extract_archive()
 BOTTLENAME="Deepin-TIM"
 APPVER="9.3.2deepin20"
 WINEPREFIX="$HOME/.deepinwine/$BOTTLENAME"
-TIM_VER="3.3.5.22018"
+TIM_VER="3.3.8.22043"
 EXEC_PATH="c:/Program Files/Tencent/TIM/Bin/TIM.exe"
 START_SHELL_PATH="$HOME/.deepinwine/deepin-wine-helper/run_v3.sh"
 TIM_INSTALLER_PATH="c:/Program Files/Tencent/TIM$TIM_VER.exe"
