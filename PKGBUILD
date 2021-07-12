@@ -1,7 +1,7 @@
 # Maintainer: Codist <countstarlight@gmail.com>
 
 pkgname=deepin-wine-tim
-pkgver=3.3.5.22018
+pkgver=3.3.8.22043
 debpkgver=9.3.2deepin20
 debpkgname="com.qq.im.deepin"
 timpkgname="com.qq.office.deepin"
@@ -15,12 +15,12 @@ conflicts=('wine-tim' 'deepin.com.qq.office' 'deepin-tim-for-arch')
 install="deepin-wine-tim.install"
 _mirror="https://cdn-package-store6.deepin.com"
 source=("$_mirror/appstore/pool/appstore/c/${debpkgname}/${debpkgname}_${debpkgver}_i386.deb"
-  "https://dldir1.qq.com/qqfile/qq/PCTIM/TIM3.3.5/TIM${pkgver}.exe"
+  "https://dldir1.qq.com/qqfile/qq/PCTIM/TIM3.3.8/TIM${pkgver}.exe"
   "run.sh"
   "share.7z")
 md5sums=('5fdc20e614d945bd2ba5251420872479'
-  '1566952fcbc0db4841ddf93ea89428c6'
-  'a6cb0fd46a7ff78d889a961c4b97bfae'
+  '57aa69085e451c147a6af8866f4b37b8'
+  '2b77191d80819fe88bd45a2e007c3e18'
   '479ae2a04a9c5dcc08c67c7b1395a944')
 
 build() {

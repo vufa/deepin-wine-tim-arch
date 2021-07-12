@@ -6,7 +6,7 @@
     <img src="https://img.shields.io/github/workflow/status/countstarlight/deepin-wine-tim-arch/CI/action?logo=github&style=flat-square" alt="Build Status">
   </a>
   <a href="https://office.qq.com/download.html">
-    <img src="https://img.shields.io/badge/TIM-3.3.5.22018-blue?style=flat-square" alt="TIM Version">
+    <img src="https://img.shields.io/badge/TIM-3.3.8.22043-blue?style=flat-square" alt="TIM Version">
   </a>
   <a href="https://aur.archlinux.org/packages/deepin-wine-tim/">
     <img src="https://img.shields.io/aur/version/deepin-wine-tim?label=AUR&logo=arch-linux&style=flat-square" alt="AUR Version">
@@ -75,7 +75,7 @@ yay -S deepin-wine-tim
 
 ### 用安装包安装
 
-> 由 [GitHub Action](https://github.com/countstarlight/deepin-wine-tim-arch/actions) 在 Docker 容器 [countstarlight/makepkg](https://hub.docker.com/repository/docker/countstarlight/makepkg) 中自动构建的 ArchLinux 安装包
+> 由 [GitHub Action](https://github.com/countstarlight/deepin-wine-tim-arch/actions) 在 Docker 容器 [countstarlight/makepkg](https://hub.docker.com/r/countstarlight/makepkg) 中自动构建的 ArchLinux 安装包
 
 在 [GitHub Release](https://github.com/countstarlight/deepin-wine-tim-arch/releases) 页面下载后缀为 `.pkg.tar.xz` 或 `.pkg.tar.zst` 的安装包，使用`pacman`安装：
 
@@ -122,6 +122,7 @@ dpi，目录映射等可以在 `winecfg` 进行设置，打开 `winecfg` 的命�
 
 |     TIM     | wine |   兼容性   |             备注             | deepin-wine | 兼容性 | 备注 |
 | :---------: | :--: | :--------: | :--------------------------: | :---------: | :----: | :--: |
+| 3.3.8.22043 | 6.12 |            |                              |  5.0.16-1   |  支持  |      |
 | 3.3.5.22018 | 6.8  |            |                              |  5.0.16-1   |  支持  |      |
 | 3.3.0.22020 | 6.1  |    部分    | 部分字体显示为方框且性能较差 |  5.0.16-1   |  支持  |      |
 | 3.2.0.21856 | 5.18 | **不支持** |           无法启动           |  2.18_24-3  |  支持  |      |
@@ -221,6 +222,7 @@ TIM在本地保存的数据不会被删除，如保存在用户文档下的数�
 <details open>
 <summary>2021</summary>
 
+* 2021-07-12 TIM-3.3.8.22043
 * 2021-05-11 TIM-3.3.5.22018
 * 2021-02-11 TIM-3.3.0.22020 com.qq.im.deepin_9.3.2deepin20
 * 2021-02-03 TIM-3.3.0.22020 com.qq.im.deepin_9.3.2deepin14
