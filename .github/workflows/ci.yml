@@ -19,11 +19,13 @@ jobs:
       - name: Build archlinux package
         uses: countstarlight/arch-makepkg-action@master
         with:
+          repos: >
+            archlinuxcn=https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
+          before: "sudo pacman -S --noconfirm archlinuxcn-keyring"
           packages: >
             p7zip
-            wine
-            wine-mono
-            wine-gecko
+            deepin-wine6-stable
+            deepin-wine-helper
             xorg-xwininfo
             wqy-microhei
             lib32-alsa-lib
