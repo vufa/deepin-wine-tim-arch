@@ -5,12 +5,12 @@ pkgver=3.3.8.22043
 debpkgver=9.3.2deepin20
 debpkgname="com.qq.im.deepin"
 timpkgname="com.qq.office.deepin"
-pkgrel=1
+pkgrel=2
 pkgdesc="Tencent TIM on Deepin Wine5(${timpkgname}) For Archlinux"
 arch=("x86_64")
 url="https://tim.qq.com/"
 license=('custom')
-depends=('p7zip' 'wine' 'wine-mono' 'wine-gecko' 'xorg-xwininfo' 'wqy-microhei' 'lib32-alsa-lib' 'lib32-alsa-plugins' 'lib32-libpulse' 'lib32-openal' 'lib32-mpg123' 'lib32-gnutls')
+depends=('p7zip' 'deepin-wine6-stable' 'deepin-wine-helper' 'xorg-xwininfo' 'wqy-microhei' 'lib32-alsa-lib' 'lib32-alsa-plugins' 'lib32-libpulse' 'lib32-openal' 'lib32-mpg123' 'lib32-gnutls')
 conflicts=('wine-tim' 'deepin.com.qq.office' 'deepin-tim-for-arch')
 install="deepin-wine-tim.install"
 _mirror="https://cdn-package-store6.deepin.com"
@@ -20,7 +20,7 @@ source=("$_mirror/appstore/pool/appstore/c/${debpkgname}/${debpkgname}_${debpkgv
   "share.7z")
 md5sums=('5fdc20e614d945bd2ba5251420872479'
   '57aa69085e451c147a6af8866f4b37b8'
-  '2b77191d80819fe88bd45a2e007c3e18'
+  'd3f0dac7d62fa4668ad77db74bcb4cd2'
   '479ae2a04a9c5dcc08c67c7b1395a944')
 
 build() {
@@ -51,7 +51,7 @@ package() {
   msg "Copying deepin files ..."
   install -d "${pkgdir}/opt/apps/${timpkgname}/files"
   install -m644 "${srcdir}/files.7z" "${pkgdir}/opt/apps/${timpkgname}/files/"
-  cp ${srcdir}/dpkgdir/opt/apps/${debpkgname}/files/helper_archive* "${pkgdir}/opt/apps/${timpkgname}/files/"
+  # cp ${srcdir}/dpkgdir/opt/apps/${debpkgname}/files/helper_archive* "${pkgdir}/opt/apps/${timpkgname}/files/"
   #install -m755 "${srcdir}/dpkgdir/opt/apps/${debpkgname}/files/gtkGetFileNameDlg" "${pkgdir}/opt/apps/${timpkgname}/files/"
   md5sum "${srcdir}/files.7z" | awk '{ print $1 }' > "${pkgdir}/opt/apps/${timpkgname}/files/files.md5sum"
   install -m755 "${srcdir}/run.sh" "${pkgdir}/opt/apps/${timpkgname}/files/"
