@@ -21,7 +21,7 @@
 
 Deepin 打包的 QQ 容器(`com.qq.im.deepin`)移植到 Archlinux，QQ 环境修改为 TIM，包含定制的运行脚本，TIM 安装包为官方最新
 
-:warning: `deepin-wine-tim` 从 `v3.3.8.22043-1` 开始，默认使用AUR仓库 [deepin-wine6-stable](https://aur.archlinux.org/packages/deepin-wine6-stable/)，不再依赖 `wine`，可以进行一些清理操作来保持系统整洁，具体参照： [从 `wine`/`deepin-wine 2.x`/`deepin-wine5` 迁移](#从-winedeepin-wine-2xdeepin-wine5-迁移)
+:warning: `deepin-wine-tim` 从 `v3.3.8.22043-2` 开始，默认使用AUR仓库 [deepin-wine6-stable](https://aur.archlinux.org/packages/deepin-wine6-stable/)，不再依赖 `wine`，可以进行一些清理操作来保持系统整洁，具体参照： [从 `wine`/`deepin-wine 2.x`/`deepin-wine5` 迁移](#从-winedeepin-wine-2xdeepin-wine5-迁移)
 
 <!-- TOC -->
 
@@ -132,7 +132,7 @@ dpi，目录映射等可以在 `winecfg` 进行设置，打开 `winecfg` 的命�
 
 ## 切换到 `deepin-wine`
 
-:warning: `deepin-wine-tim` 从 `v3.3.8.22043-1` 开始，默认使用AUR仓库 [deepin-wine6-stable](https://aur.archlinux.org/packages/deepin-wine6-stable/)，无需再进行任何切换操作，对于之前的版本，可以查看[旧版README](https://github.com/countstarlight/deepin-wine-tim-arch/blob/16e288a7288d0d19e3fb2f7b93a3c5aa7a8f5129/run.sh)。
+:warning: `deepin-wine-tim` 从 `v3.3.8.22043-2` 开始，默认使用AUR仓库 [deepin-wine6-stable](https://aur.archlinux.org/packages/deepin-wine6-stable/)，无需再进行任何切换操作，对于之前的版本，可以查看[旧版README](https://github.com/countstarlight/deepin-wine-tim-arch/blob/16e288a7288d0d19e3fb2f7b93a3c5aa7a8f5129/run.sh)。
 
 ### 自动切换(推荐)
 
@@ -140,7 +140,7 @@ dpi，目录映射等可以在 `winecfg` 进行设置，打开 `winecfg` 的命�
 
 ### 从 `wine`/`deepin-wine 2.x`/`deepin-wine5` 迁移
 
-更新到 `deepin-wine-tim v3.3.8.22043-1` 及之后的版本后，依赖变更为 `deepin-wine6-stable`，
+更新到 `deepin-wine-tim v3.3.8.22043-2` 及之后的版本后，依赖变更为 `deepin-wine6-stable`，
 
 如果此时没有其他应用在使用 `wine` 和旧版 `deepin-wine`，就可以放心的卸载旧版 `wine`, `deepin-wine` 及其依赖：
 
