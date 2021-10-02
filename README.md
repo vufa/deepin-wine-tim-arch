@@ -133,11 +133,11 @@ dpi，目录映射等可以在 `winecfg` 进行设置，打开 `winecfg` 的命�
 
 ## 切换到 `deepin-wine`
 
-:warning: `deepin-wine-tim` 从 `v3.3.8.22043-2` 开始，默认使用AUR仓库 [deepin-wine6-stable](https://aur.archlinux.org/packages/deepin-wine6-stable/)，无需再进行任何切换操作，对于之前的版本，可以查看[旧版README](https://github.com/countstarlight/deepin-wine-tim-arch/blob/16e288a7288d0d19e3fb2f7b93a3c5aa7a8f5129/run.sh)。
+:warning: `deepin-wine-tim` 从 `v3.3.8.22043-2` 开始，默认使用AUR仓库 [deepin-wine6-stable](https://aur.archlinux.org/packages/deepin-wine6-stable/)，无需再进行任何切换操作，对于之前的版本，可以查看[旧版README](https://github.com/countstarlight/deepin-wine-tim-arch/blob/16e288a7288d0d19e3fb2f7b93a3c5aa7a8f5129/README.md)。
 
 ### 自动切换(推荐)
 
-对于之前的版本，可以查看[旧版README](https://github.com/countstarlight/deepin-wine-tim-arch/blob/16e288a7288d0d19e3fb2f7b93a3c5aa7a8f5129/run.sh)。
+对于之前的版本，可以查看[旧版README](https://github.com/countstarlight/deepin-wine-tim-arch/blob/16e288a7288d0d19e3fb2f7b93a3c5aa7a8f5129/README.md)。
 
 ### 从 `wine`/`deepin-wine 2.x`/`deepin-wine5` 迁移
 
@@ -174,11 +174,11 @@ TIM在本地保存的数据不会被删除，如保存在用户文档下的数�
 
 ### 不能记住密码
 
-对于之前的版本，可以查看[旧版README](https://github.com/countstarlight/deepin-wine-tim-arch/blob/16e288a7288d0d19e3fb2f7b93a3c5aa7a8f5129/run.sh)。
+对于之前的版本，可以查看[旧版README](https://github.com/countstarlight/deepin-wine-tim-arch/blob/16e288a7288d0d19e3fb2f7b93a3c5aa7a8f5129/README.md)。
 
 ### 网络连接状态改变后不能重连
 
-对于之前的版本，可以查看[旧版README](https://github.com/countstarlight/deepin-wine-tim-arch/blob/16e288a7288d0d19e3fb2f7b93a3c5aa7a8f5129/run.sh)。
+对于之前的版本，可以查看[旧版README](https://github.com/countstarlight/deepin-wine-tim-arch/blob/16e288a7288d0d19e3fb2f7b93a3c5aa7a8f5129/README.md)。
 
 ### 高分辨率屏幕支持
 
