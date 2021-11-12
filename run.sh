@@ -5,7 +5,7 @@
 #   Author:     Li LongYu <lilongyu@linuxdeepin.com>
 #               Peng Hao <penghao@linuxdeepin.com>
 
-#               Codist <countstarlight@gmail.com>
+#               Vufa <countstarlight@gmail.com>
 
 version_gt() { test "$(echo "$@" | tr " " "\n" | sort -V | head -n 1)" != "$1"; }
 
@@ -18,7 +18,7 @@ START_SHELL_PATH="/opt/deepinwine/tools/run_v4.sh"
 TIM_INSTALLER_PATH="c:/Program Files/Tencent/TIM$TIM_VER.exe"
 export MIME_TYPE=""
 export DEB_PACKAGE_NAME="com.qq.office.deepin"
-export APPRUN_CMD="deepin-wine6-stable"
+export APPRUN_CMD="deepin-wine5"
 DISABLE_ATTACH_FILE_DIALOG=""
 
 export SPECIFY_SHELL_DIR=`dirname $START_SHELL_PATH`
