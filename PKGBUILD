@@ -10,17 +10,17 @@ pkgdesc="Tencent TIM on Deepin Wine5(${timpkgname}) For Archlinux"
 arch=("x86_64")
 url="https://tim.qq.com/"
 license=('custom')
-depends=('p7zip' 'deepin-wine6-stable' 'deepin-wine-helper' 'xorg-xwininfo' 'wqy-microhei' 'lib32-alsa-lib' 'lib32-alsa-plugins' 'lib32-libpulse' 'lib32-openal' 'lib32-mpg123' 'lib32-gnutls')
+depends=('p7zip' 'deepin-wine5' 'deepin-wine-helper' 'xorg-xwininfo' 'wqy-microhei' 'lib32-alsa-lib' 'lib32-alsa-plugins' 'lib32-libpulse' 'lib32-openal' 'lib32-mpg123' 'lib32-gnutls')
 conflicts=('wine-tim' 'deepin.com.qq.office' 'deepin-tim-for-arch')
 install="deepin-wine-tim.install"
-_mirror="https://cdn-package-store6.deepin.com"
+_mirror="https://com-store-packages.uniontech.com"
 source=("$_mirror/appstore/pool/appstore/c/${debpkgname}/${debpkgname}_${debpkgver}_i386.deb"
   "https://dldir1.qq.com/qqfile/qq/PCTIM/TIM3.3.8/TIM${pkgver}.exe"
   "run.sh"
   "share.7z")
 md5sums=('5fdc20e614d945bd2ba5251420872479'
   '57aa69085e451c147a6af8866f4b37b8'
-  '01f1121b3cbfeb71ce87f8f272ecd650'
+  '78cec653bc342c0f80972233e5479180'
   '479ae2a04a9c5dcc08c67c7b1395a944')
 
 build() {
