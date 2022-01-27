@@ -6,7 +6,7 @@
     <img src="https://img.shields.io/github/workflow/status/vufa/deepin-wine-tim-arch/CI/action?logo=github&style=flat-square" alt="Build Status">
   </a>
   <a href="https://office.qq.com/download.html">
-    <img src="https://img.shields.io/badge/TIM-3.3.8.22043-blue?style=flat-square" alt="TIM Version">
+    <img src="https://img.shields.io/badge/TIM-3.3.9.22051-blue?style=flat-square" alt="TIM Version">
   </a>
   <a href="https://aur.archlinux.org/packages/deepin-wine-tim/">
     <img src="https://img.shields.io/aur/version/deepin-wine-tim?label=AUR&logo=arch-linux&style=flat-square" alt="AUR Version">
@@ -62,6 +62,10 @@ Deepin 打包的 QQ 容器(`com.qq.im.deepin`)移植到 Archlinux，QQ 环境修
 -#Include = /etc/pacman.d/mirrorlist
 +[multilib]
 +Include = /etc/pacman.d/mirrorlist
+```
+保存后执行
+```shell
+sudo pacman -Sy
 ```
 
 :warning: **注意：由于新版TIM可能需要 `wine` 还没有实现的一些win api，这会导致一些功能不可用，安装前先根据[兼容性记录](#兼容性记录)选择一个合适的版本**
@@ -189,6 +193,18 @@ TIM在本地保存的数据不会被删除，如保存在用户文档下的数�
 
 参照[设置](#设置)打开 `winecfg` ，在选项卡 `Graphics` 中修改dpi，如 修改为`192`
 
+:bulb: 这一修改会在更新或重装后被重置，如果要在更新后保留dpi设置，可以添加环境变量
+
+> 根据 [deepin-wine-wechat-arch#173](https://github.com/vufa/deepin-wine-wechat-arch/issues/173)，由[abcfy2](https://github.com/abcfy2)提供的方法
+
+编辑 `~/.pam_environment`，添加：
+
+```
+DEEPIN_WINE_SCALE=1.25
+```
+
+`1.25` 为缩放比例，计算方法和其他注意事项参照 [deepin-wine-wechat-arch#173(comment)](https://github.com/vufa/deepin-wine-wechat-arch/issues/173#issuecomment-989944258)
+
 ### GNOME 桌面上的悬浮窗口问题
 
 > 根据 [deepin-wine-tim-arch#2](https://github.com/vufa/deepin-wine-tim-arch/issues/2)，由[EricDracula](https://github.com/EricDracula)提供的方法
@@ -222,6 +238,12 @@ TIM在本地保存的数据不会被删除，如保存在用户文档下的数�
 ## 更新日志
 
 <details open>
+<summary>2022</summary>
+
+* 2022-01-27 TIM-3.3.9.22051
+
+</details>
+<details>
 <summary>2021</summary>
 
 * 2021-07-12 TIM-3.3.8.22043
