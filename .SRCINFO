@@ -8,7 +8,7 @@ pkgbase = deepin-wine-tim
 	license = custom
 	depends = p7zip
 	depends = deepin-wine5
-	depends = deepin-wine-helper
+	depends = deepin-wine-helper>=5.1.30_1-1
 	depends = xorg-xwininfo
 	depends = wqy-microhei
 	depends = lib32-alsa-lib
@@ -26,7 +26,7 @@ pkgbase = deepin-wine-tim
 	source = share.7z
 	md5sums = 5fdc20e614d945bd2ba5251420872479
 	md5sums = e5b97081022766415bd22d21fba706f6
-	md5sums = 52fa83c9d78d421cf91ef1f3e9a79dbb
+	md5sums = cb8c2f007930241730cede526094fae5
 	md5sums = 479ae2a04a9c5dcc08c67c7b1395a944
 
 pkgname = deepin-wine-tim
