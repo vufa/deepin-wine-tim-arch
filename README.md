@@ -36,6 +36,7 @@ Deepin 打包的 QQ 容器(`com.qq.im.deepin`)移植到 Archlinux，QQ 环境修
     - [从 `wine`/`deepin-wine 2.x` 迁移](#从-winedeepin-wine-2x-迁移)
 - [卸载](#卸载)
 - [常见问题及解决](#常见问题及解决)
+    - [QQ 安全组件异常](#qq-安全组件异常)
     - [不能记住密码](#不能记住密码)
     - [网络连接状态改变后不能重连](#网络连接状态改变后不能重连)
     - [高分辨率屏幕支持](#高分辨率屏幕支持)
@@ -115,8 +116,6 @@ EXEC_PATH="c:/Program Files/Tencent/TIM/Bin/TIM.exe"
 ```
 改为修改后的安装路径，否则只有安装后第一次能够运行
 
-:bulb: **NOTE: 前几次运行时可能会提示 "qq安全组件异常"，等一会再运行或重启一下系统**
-
 ## 设置
 
 dpi，目录映射等可以在 `winecfg` 进行设置，打开 `winecfg` 的命令为：
@@ -137,11 +136,11 @@ dpi，目录映射等可以在 `winecfg` 进行设置，打开 `winecfg` 的命�
 
 ## 切换到 `deepin-wine`
 
-:warning: `deepin-wine-tim` 从 `v3.3.8.22043-2` 开始，默认使用AUR仓库 [deepin-wine5](https://aur.archlinux.org/packages/deepin-wine5/)，无需再进行任何切换操作，对于之前的版本，可以查看[旧版README](https://github.com/vufa/deepin-wine-tim-arch/blob/16e288a7288d0d19e3fb2f7b93a3c5aa7a8f5129/run.sh)。
+:warning: `deepin-wine-tim` 从 `v3.3.8.22043-2` 开始，默认使用AUR仓库 [deepin-wine5](https://aur.archlinux.org/packages/deepin-wine5/)，无需再进行任何切换操作，对于之前的版本，可以查看[旧版README](https://github.com/vufa/deepin-wine-tim-arch/blob/16e288a7288d0d19e3fb2f7b93a3c5aa7a8f5129/README.md)。
 
 ### 自动切换(推荐)
 
-对于之前的版本，可以查看[旧版README](https://github.com/vufa/deepin-wine-tim-arch/blob/16e288a7288d0d19e3fb2f7b93a3c5aa7a8f5129/run.sh)。
+对于之前的版本，可以查看[旧版README](https://github.com/vufa/deepin-wine-tim-arch/blob/16e288a7288d0d19e3fb2f7b93a3c5aa7a8f5129/README.md)。
 
 ### 从 `wine`/`deepin-wine 2.x` 迁移
 
@@ -181,13 +180,17 @@ TIM在本地保存的数据不会被删除，如保存在用户文档下的数�
 
 ## 常见问题及解决
 
+### QQ 安全组件异常
+
+前几次运行时可能会出现该问题，等一会再运行或重启一下系统即可。
+
 ### 不能记住密码
 
-对于之前的版本，可以查看[旧版README](https://github.com/vufa/deepin-wine-tim-arch/blob/16e288a7288d0d19e3fb2f7b93a3c5aa7a8f5129/run.sh)。
+对于之前的版本，可以查看[旧版README](https://github.com/vufa/deepin-wine-tim-arch/blob/16e288a7288d0d19e3fb2f7b93a3c5aa7a8f5129/README.md)。
 
 ### 网络连接状态改变后不能重连
 
-对于之前的版本，可以查看[旧版README](https://github.com/vufa/deepin-wine-tim-arch/blob/16e288a7288d0d19e3fb2f7b93a3c5aa7a8f5129/run.sh)。
+对于之前的版本，可以查看[旧版README](https://github.com/vufa/deepin-wine-tim-arch/blob/16e288a7288d0d19e3fb2f7b93a3c5aa7a8f5129/README.md)。
 
 ### 高分辨率屏幕支持
 
