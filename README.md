@@ -1,9 +1,11 @@
+<h1 align="center">Tencent已经发布了可用的 <a href="https://im.qq.com/linuxqq/index.shtml">linuxqq</a>，这个项目不再维护 </h1>
+
 在Archlinux及衍生发行版上运行TIM
 ========
 
 <p align="center">
   <a href="https://github.com/vufa/deepin-wine-tim-arch/actions">
-    <img src="https://img.shields.io/github/workflow/status/vufa/deepin-wine-tim-arch/CI/action?logo=github&style=flat-square" alt="Build Status">
+    <img src="https://img.shields.io/github/actions/workflow/status/vufa/deepin-wine-tim-arch/ci.yml?logo=github&style=flat-square" alt="Build Status">
   </a>
   <a href="https://office.qq.com/download.html">
     <img src="https://img.shields.io/badge/TIM-3.3.9.22051-blue?style=flat-square" alt="TIM Version">
